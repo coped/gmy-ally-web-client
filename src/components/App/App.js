@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from '../../logo_transparent.png';
+import gymPartnerLogo from 'assets/images/logo_transparent.png';
 import './App.css';
 
 class App extends Component {
@@ -14,7 +14,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <img src={gymPartnerLogo} className="App-logo" alt="logo" />
           <p>
             Gym Partner is currently under construction.
           </p>
