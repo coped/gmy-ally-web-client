@@ -6,9 +6,12 @@ export default function TextInputField(props) {
       <label className="label">{props.label}</label>
       <div className="control">
         <input 
-          className="input" 
+          className="input"
+          name={props.name}
           type={props.type}
-          placeholder={props.placeholder} 
+          placeholder={props.placeholder}
+          value={props.value}
+          onChange={props.onChange}
         />
       </div>
     </div>

@@ -1,50 +1,122 @@
-import React, { Component } from 'react';
-import TextInputField from 'components/common/TextInputField';
-import Button from 'components/common/Button';
+import React, { Component } from "react";
+import TextInputField from "components/common/TextInputField";
+import Button from "components/common/Button";
+import Tag from "components/common/Tag";
+import AsyncRequest from "lib/asyncRequest";
+import { endpoints } from "lib/endpoints";
 
 export default class SignupForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoading: false,
+      nameValue: "",
+      emailValue: "",
+      passwordValue: "",
+      passwordConfirmationValue: "",
+      apiMessages: "",
     };
+
+    this.onTextFieldChange = this.onTextFieldChange.bind(this);
+    this.signupUser = this.signupUser.bind(this);
+  }
+
+  async signupUser(credentials) {
+    const response = await AsyncRequest.post(
+      endpoints.users.create,
+      credentials
+    );
+    if (response.status === "success") {
+      this.props.isAuthenticated(response.payload.jwt);
+    } else {
+      this.setState({
+        apiMessages: response.messages,
+      });
+    }
+  }
+
+  onTextFieldChange(event) {
+    const target = event.target;
+    this.setState({
+      [target.name]: target.value,
+    });
   }
 
   render() {
+    const { toggleSignupForm } = this.props;
+    const {
+      nameValue,
+      emailValue,
+      passwordValue,
+      passwordConfirmationValue,
+      apiMessages,
+    } = this.state;
     return (
-      <div className="container">
-        <TextInputField 
-          label="Name:"
-          type="text"
-          placeholder="Your Name"
-        />
-        <TextInputField
-          label="Email:"
-          type="email"
-          placeholder="your@email.com"
-        />
-        <TextInputField
-          label="Password:"
-          type="password"
-        />
-        <TextInputField
-          label="Password confirmation"
-          type="password"
-        />
-        <div className="field">
-          <div className="control">
-            <Button 
-              textContent="Log in"
-              classModifiers="is-link"
-              onClick={() => console.log('clicked')}
-            />
+      <div>
+        <form
+          onSubmit={(e) => {
+            this.signupUser({
+              user: {
+                name: nameValue,
+                email: emailValue,
+                password: passwordValue,
+                password_confirmation: passwordConfirmationValue,
+              },
+            });
+            e.preventDefault();
+          }}
+        >
+          <div className="has-text-centered">
+            {apiMessages &&
+              apiMessages.map((message, index) => (
+                <Tag
+                  key={index}
+                  message={message.message}
+                  type={message.type}
+                />
+              ))}
           </div>
-        </div>
-        <div>
-          <p className="is-size-6">Already have an account? <a onClick={this.props.toggleSignupCallback}> 
-            Log in.</a>
-          </p>
-        </div>
+          <TextInputField
+            label="Name:"
+            name="nameValue"
+            type="text"
+            placeholder="Your Name"
+            value={nameValue}
+            onChange={this.onTextFieldChange}
+          />
+          <TextInputField
+            label="Email:"
+            name="emailValue"
+            type="email"
+            placeholder="your@email.com"
+            value={emailValue}
+            onChange={this.onTextFieldChange}
+          />
+          <TextInputField
+            label="Password:"
+            name="passwordValue"
+            type="password"
+            value={passwordValue}
+            onChange={this.onTextFieldChange}
+          />
+          <TextInputField
+            label="Password confirmation:"
+            name="passwordConfirmationValue"
+            type="password"
+            value={passwordConfirmationValue}
+            onChange={this.onTextFieldChange}
+          />
+          <div className="field">
+            <div className="control">
+              <Button textContent="Sign up" classModifiers="is-link" />
+            </div>
+          </div>
+          <div>
+            <p className="is-size-6">
+              Already have an account? <a onClick={toggleSignupForm}>Log in.</a>
+            </p>
+          </div>
+        </form>
       </div>
     );
   }

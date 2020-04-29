@@ -1,13 +1,10 @@
-import React from 'react';
+import React from "react";
 
 export default function Button(props) {
-    const classModifiers = (props.classModifiers) ? props.classModifiers : "";
-    return (
-        <button
-            className={"button " + classModifiers}
-            onClick={props.onClick}
-        >
-            {props.textContent}
-        </button> 
-    )
+  const classModifiers = props.classModifiers ? props.classModifiers : "";
+  return (
+    <button className={"button " + classModifiers} onClick={props.onClick}>
+      {props.textContent}
+    </button>
+  );
 }
