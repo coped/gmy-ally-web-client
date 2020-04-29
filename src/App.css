@@ -1,0 +1,14 @@
+.App {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: #eeeeee;
+    background-color: #2d4059;
+}
+
+.logo-medium {
+    width: 50vh;
+}
