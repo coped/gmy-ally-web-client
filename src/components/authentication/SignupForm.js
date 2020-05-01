@@ -23,6 +23,7 @@ export default class SignupForm extends Component {
   }
 
   signupUser(credentials) {
+    this.setState({ isLoading: true });
     AsyncRequest.post(endpoints.users.create, credentials)
       .then((response) => response.json())
       .then((data) => {
@@ -35,7 +36,8 @@ export default class SignupForm extends Component {
       .catch((error) => {
         console.log(error);
         this.setState({ apiMessages: [Messages.generalError] });
-      });
+      })
+      .finally(() => this.setState({ isLoading: false }));
   }
 
   onTextFieldChange(event) {
@@ -54,6 +56,7 @@ export default class SignupForm extends Component {
       passwordConfirmationValue,
       apiMessages,
     } = this.state;
+    const isLoading = this.state.isLoading ? "is-loading" : "";
     return (
       <div>
         <form
@@ -111,7 +114,10 @@ export default class SignupForm extends Component {
           />
           <div className="field">
             <div className="control">
-              <Button textContent="Sign up" classModifiers="is-link" />
+              <Button
+                textContent="Sign up"
+                classModifiers={"is-link " + isLoading}
+              />
             </div>
           </div>
           <div>

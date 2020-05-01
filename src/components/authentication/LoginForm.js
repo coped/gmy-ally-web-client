@@ -28,6 +28,7 @@ export default class LoginForm extends Component {
   }
 
   loginUser(credentials) {
+    this.setState({ isLoading: true });
     AsyncRequest.post(endpoints.authentication.login, credentials)
       .then((response) => response.json())
       .then((data) => {
@@ -40,12 +41,14 @@ export default class LoginForm extends Component {
       .catch((error) => {
         console.log(error);
         this.setState({ apiMessages: [Messages.generalError] });
-      });
+      })
+      .finally(() => this.setState({ isLoading: false }));
   }
 
   render() {
     const { toggleSignupForm } = this.props;
     const { emailValue, passwordValue, apiMessages } = this.state;
+    const isLoading = this.state.isLoading ? "is-loading" : "";
     return (
       <div>
         <form
@@ -86,7 +89,10 @@ export default class LoginForm extends Component {
           />
           <div className="field">
             <div className="control">
-              <Button textContent="Log in" classModifiers="is-link" />
+              <Button
+                textContent="Log in"
+                classModifiers={"is-link " + isLoading}
+              />
             </div>
           </div>
           <div>
