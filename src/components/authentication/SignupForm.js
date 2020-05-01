@@ -4,6 +4,7 @@ import Button from "components/common/Button";
 import Tag from "components/common/Tag";
 import AsyncRequest from "lib/asyncRequest";
 import { endpoints } from "lib/endpoints";
+import Messages from "lib/messages";
 
 export default class SignupForm extends Component {
   constructor(props) {
@@ -21,18 +22,20 @@ export default class SignupForm extends Component {
     this.signupUser = this.signupUser.bind(this);
   }
 
-  async signupUser(credentials) {
-    const response = await AsyncRequest.post(
-      endpoints.users.create,
-      credentials
-    );
-    if (response.status === "success") {
-      this.props.isAuthenticated(response.payload.jwt);
-    } else {
-      this.setState({
-        apiMessages: response.messages,
+  signupUser(credentials) {
+    AsyncRequest.post(endpoints.users.create, credentials)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.status === "success") {
+          this.props.isAuthenticated(data.payload.jwt);
+        } else {
+          this.setState({ apiMessages: data.messages });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        this.setState({ apiMessages: [Messages.generalError] });
       });
-    }
   }
 
   onTextFieldChange(event) {

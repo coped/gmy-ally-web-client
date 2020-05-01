@@ -24,13 +24,12 @@ export default class App extends Component {
   }
 
   render() {
-    const { messages } = this.state;
     return (
       <div className="App section">
         {this.state.isAuthenticated ? (
           <Dashboard />
         ) : (
-          <Login isAuthenticated={this.isAuthenticated} messages={messages} />
+          <Login isAuthenticated={this.isAuthenticated} />
         )}
       </div>
     );

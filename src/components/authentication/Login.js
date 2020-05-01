@@ -18,7 +18,7 @@ export default class Login extends Component {
   }
 
   render() {
-    const { messages, isAuthenticated } = this.props;
+    const { isAuthenticated } = this.props;
     const { showSignup } = this.state;
     return (
       <div>
@@ -30,13 +30,11 @@ export default class Login extends Component {
             <SignupForm
               toggleSignupForm={this.toggleSignupForm}
               isAuthenticated={isAuthenticated}
-              messages={messages}
             />
           ) : (
             <LoginForm
               toggleSignupForm={this.toggleSignupForm}
               isAuthenticated={isAuthenticated}
-              messages={messages}
             />
           )}
         </div>

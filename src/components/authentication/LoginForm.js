@@ -4,6 +4,7 @@ import Button from "components/common/Button";
 import Tag from "components/common/Tag";
 import AsyncRequest from "lib/asyncRequest";
 import { endpoints } from "lib/endpoints";
+import Messages from "lib/messages";
 
 export default class LoginForm extends Component {
   constructor(props) {
@@ -26,16 +27,20 @@ export default class LoginForm extends Component {
     });
   }
 
-  async loginUser(credentials) {
-    const response = await AsyncRequest.post(
-      endpoints.authentication.login,
-      credentials
-    );
-    if (response.status === "success") {
-      this.props.isAuthenticated(response.payload.jwt);
-    } else {
-      this.setState({ apiMessages: response.messages });
-    }
+  loginUser(credentials) {
+    AsyncRequest.post(endpoints.authentication.login, credentials)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.status === "success") {
+          this.props.isAuthenticated(data.payload.jwt);
+        } else {
+          this.setState({ apiMessages: data.messages });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        this.setState({ apiMessages: [Messages.generalError] });
+      });
   }
 
   render() {

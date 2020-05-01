@@ -1,61 +1,52 @@
 export default (function AsyncRequest() {
-  const get = async (path, authorization = null) => {
-    const body = {
+  // Makes a fetch request using provided path, data, and authorization. Returns a promise
+
+  const basicOptions = {
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  const buildOptions = (options, authorization) => {
+    const thisRequestOptions = { ...basicOptions, ...options };
+    thisRequestOptions.headers["Authorization"] = authorization;
+    return thisRequestOptions;
+  };
+
+  const get = (path, authorization = null) => {
+    const options = {
       method: "GET",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: authorization,
-      },
     };
-    const request = new Request(path, body);
-    const response = await fetch(request);
-    return await response.json();
+    const request = new Request(path, buildOptions(options, authorization));
+    return fetch(request);
   };
 
-  const post = async (path, data = null, authorization = null) => {
-    const body = {
+  const post = (path, data = null, authorization = null) => {
+    const options = {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: authorization,
-      },
-      mode: "cors",
       body: JSON.stringify(data),
     };
-    const request = new Request(path, body);
-    const response = await fetch(request);
-    return await response.json();
+    const request = new Request(path, buildOptions(options, authorization));
+    return fetch(request);
   };
 
-  const patch = async (path, data, authorization = null) => {
-    const body = {
+  const patch = (path, data, authorization = null) => {
+    const options = {
       method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: authorization,
-      },
-      mode: "cors",
       body: JSON.stringify(data),
     };
-    const request = new Request(path, body);
-    const response = await fetch(request);
-    return await response.json();
+    const request = new Request(path, buildOptions(options, authorization))
+    return fetch(request);
   };
 
-  const deleteRequest = async (path, data, authorization = null) => {
-    const body = {
+  const deleteRequest = (path, data, authorization = null) => {
+    const options = {
       method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: authorization,
-      },
-      mode: "cors",
       body: JSON.stringify(data),
     };
-    const request = new Request(path, body);
-    const response = await fetch(request);
-    return await response.json();
+    const request = new Request(path, buildOptions(options, authorization))
+    return fetch(request);
   };
 
   return { get, post, patch, deleteRequest };
