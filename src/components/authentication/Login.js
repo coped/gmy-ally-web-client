@@ -21,22 +21,24 @@ export default class Login extends Component {
     const { isAuthenticated } = this.props;
     const { showSignup } = this.state;
     return (
-      <div>
+      <div className="center-column">
         <div className="logo-medium">
           <Logo isAnimated={true} />
         </div>
-        <div className="box">
-          {showSignup ? (
-            <SignupForm
-              toggleSignupForm={this.toggleSignupForm}
-              isAuthenticated={isAuthenticated}
-            />
-          ) : (
-            <LoginForm
-              toggleSignupForm={this.toggleSignupForm}
-              isAuthenticated={isAuthenticated}
-            />
-          )}
+        <div className="column is-5">
+          <div className="box">
+            {showSignup ? (
+              <SignupForm
+                toggleSignupForm={this.toggleSignupForm}
+                isAuthenticated={isAuthenticated}
+              />
+            ) : (
+              <LoginForm
+                toggleSignupForm={this.toggleSignupForm}
+                isAuthenticated={isAuthenticated}
+              />
+            )}
+          </div>
         </div>
       </div>
     );

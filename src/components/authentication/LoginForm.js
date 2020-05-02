@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import TextInputField from "components/common/TextInputField";
 import Button from "components/common/Button";
-import Tag from "components/common/Tag";
 import AsyncRequest from "lib/asyncRequest";
 import { endpoints } from "lib/endpoints";
 import Messages from "lib/messages";
@@ -65,11 +64,9 @@ export default class LoginForm extends Component {
           <div className="has-text-centered">
             {apiMessages &&
               apiMessages.map((message, index) => (
-                <Tag
-                  key={index}
-                  type={message.type}
-                  message={message.message}
-                />
+                <div className={`notification is-${message.type} is-medium`}>
+                  {message.message}
+                </div>
               ))}
           </div>
           <TextInputField

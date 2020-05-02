@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import TextInputField from "components/common/TextInputField";
 import Button from "components/common/Button";
-import Tag from "components/common/Tag";
 import AsyncRequest from "lib/asyncRequest";
 import { endpoints } from "lib/endpoints";
 import Messages from "lib/messages";
@@ -72,14 +71,17 @@ export default class SignupForm extends Component {
             e.preventDefault();
           }}
         >
-          <div className="has-text-centered">
+          <div>
             {apiMessages &&
               apiMessages.map((message, index) => (
-                <Tag
-                  key={index}
-                  message={message.message}
-                  type={message.type}
-                />
+                <div className={`notification is-${message.type} is-medium`}>
+                  <p>The following errors occurred:</p>
+                  <ul>
+                    {message.message.split("\n").map((error) => (
+                      <li>• {error}</li>
+                    ))}
+                  </ul>
+                </div>
               ))}
           </div>
           <TextInputField
