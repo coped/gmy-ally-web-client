@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Logo from "components/common/Logo";
-import LoginForm from "./LoginForm";
-import SignupForm from "./SignupForm";
+import { Logo } from "components/common/";
+import { LoginForm } from "components/authentication";
+import { SignupForm } from "components/authentication";
 
 export default class Login extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ export default class Login extends Component {
     const { showSignup } = this.state;
     return (
       <div className="center-column">
-        <div className="logo-medium">
+        <div className="logo-login">
           <Logo isAnimated={true} />
         </div>
         <div className="column is-5">

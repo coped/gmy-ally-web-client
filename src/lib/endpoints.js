@@ -1,11 +1,13 @@
-const ApiEndpoints = (production) => {
+const ApiEndpoints = (productionEnvironment) => {
+  // Provides API endpoints in the form of a module
+
   const productionUrl = "https://gympartner.herokuapp.com/api/v1/";
   const developmentUrl = "http://localhost:4000/api/v1/";
 
   const baseUrl = (() => {
-    if (production === true) {
+    if (productionEnvironment === true) {
       return productionUrl;
-    } else if (production === false) {
+    } else if (productionEnvironment === false) {
       return developmentUrl;
     } else {
       return process.env.NODE_ENV === "production"

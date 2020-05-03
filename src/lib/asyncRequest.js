@@ -1,5 +1,6 @@
 export default (function AsyncRequest() {
-  // Makes a fetch request using provided path, data, and authorization. Returns a promise
+  // Makes RESTful asynchronous fetch requests using provided path, data, and authorization.
+  // Returns a promise
 
   const basicOptions = {
     mode: "cors",
@@ -14,12 +15,16 @@ export default (function AsyncRequest() {
     return thisRequestOptions;
   };
 
+  const createRequest = (path, options) => {
+    const request = new Request(path, options);
+    return fetch(request);
+  };
+
   const get = (path, authorization = null) => {
     const options = {
       method: "GET",
     };
-    const request = new Request(path, buildOptions(options, authorization));
-    return fetch(request);
+    return createRequest(path, buildOptions(options, authorization));
   };
 
   const post = (path, data = null, authorization = null) => {
@@ -27,8 +32,7 @@ export default (function AsyncRequest() {
       method: "POST",
       body: JSON.stringify(data),
     };
-    const request = new Request(path, buildOptions(options, authorization));
-    return fetch(request);
+    return createRequest(path, buildOptions(options, authorization));
   };
 
   const patch = (path, data, authorization = null) => {
@@ -36,18 +40,16 @@ export default (function AsyncRequest() {
       method: "PATCH",
       body: JSON.stringify(data),
     };
-    const request = new Request(path, buildOptions(options, authorization))
-    return fetch(request);
+    return createRequest(path, buildOptions(options, authorization));
   };
 
-  const deleteRequest = (path, data, authorization = null) => {
+  const destroy = (path, data, authorization = null) => {
     const options = {
       method: "DELETE",
       body: JSON.stringify(data),
     };
-    const request = new Request(path, buildOptions(options, authorization))
-    return fetch(request);
+    return createRequest(path, buildOptions(options, authorization));
   };
 
-  return { get, post, patch, deleteRequest };
+  return { get, post, patch, destroy };
 })();

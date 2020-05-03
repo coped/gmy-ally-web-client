@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import TextInputField from "components/common/TextInputField";
-import Button from "components/common/Button";
-import AsyncRequest from "lib/asyncRequest";
-import { endpoints } from "lib/endpoints";
-import Messages from "lib/messages";
+import { TextInputField } from "components/common";
+import { Button } from "components/common";
+import { AsyncRequest } from "lib";
+import { endpoints } from "lib";
+import { Messages } from "lib";
 
 export default class LoginForm extends Component {
   constructor(props) {
@@ -32,14 +32,14 @@ export default class LoginForm extends Component {
       .then((response) => response.json())
       .then((data) => {
         if (data.status === "success") {
-          this.props.isAuthenticated(data.payload.jwt);
+          this.props.isAuthenticated(data);
         } else {
           this.setState({ apiMessages: data.messages });
         }
       })
       .catch((error) => {
         console.log(error);
-        this.setState({ apiMessages: [Messages.generalError] });
+        this.setState({ apiMessages: [Messages.connectionError] });
       })
       .finally(() => this.setState({ isLoading: false }));
   }
