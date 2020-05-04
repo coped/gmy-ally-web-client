@@ -1,5 +1,5 @@
 export default (function Messages() {
-  // Provides varioius pre-defined messages in the form of a module
+  // Provides various pre-defined messages in the form of a module
 
   const create = (type, message) => ({
     type: type,

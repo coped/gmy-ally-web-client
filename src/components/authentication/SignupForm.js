@@ -4,6 +4,7 @@ import { Button } from "components/common";
 import { AsyncRequest } from "lib";
 import { endpoints } from "lib";
 import { Messages } from "lib";
+import { Notification } from "components/common";
 
 export default class SignupForm extends Component {
   constructor(props) {
@@ -74,14 +75,14 @@ export default class SignupForm extends Component {
           <div>
             {apiMessages &&
               apiMessages.map((message, index) => (
-                <div className={`notification is-${message.type} is-medium`}>
+                <Notification type={message.type}>
                   <p>The following errors occurred:</p>
                   <ul>
                     {message.message.split("\n").map((error) => (
                       <li>• {error}</li>
                     ))}
                   </ul>
-                </div>
+                </Notification>
               ))}
           </div>
           <TextInputField
@@ -116,10 +117,7 @@ export default class SignupForm extends Component {
           />
           <div className="field">
             <div className="control">
-              <Button
-                textContent="Sign up"
-                classModifiers={"is-link " + isLoading}
-              />
+              <Button classModifiers={"is-link " + isLoading}>Sign up</Button>
             </div>
           </div>
           <div>

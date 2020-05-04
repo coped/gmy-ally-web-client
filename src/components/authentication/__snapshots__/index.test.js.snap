@@ -1,0 +1,297 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login has a valid snapshot 1`] = `
+<div
+  className="center-column"
+>
+  <div
+    className="logo-login"
+  >
+    <img
+      alt="logo"
+      className="Logo-animated"
+      src="logo_transparent.png"
+    />
+  </div>
+  <div
+    className="column is-5"
+  >
+    <div
+      className="box"
+    >
+      <div>
+        <form
+          onSubmit={[Function]}
+        >
+          <div
+            className="has-text-centered"
+          >
+            
+          </div>
+          <div
+            className="field"
+          >
+            <label
+              className="label"
+            >
+              Email:
+            </label>
+            <div
+              className="control"
+            >
+              <input
+                className="input"
+                name="emailValue"
+                onChange={[Function]}
+                placeholder="your@email.com"
+                type="email"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            className="field"
+          >
+            <label
+              className="label"
+            >
+              Password:
+            </label>
+            <div
+              className="control"
+            >
+              <input
+                className="input"
+                name="passwordValue"
+                onChange={[Function]}
+                type="password"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            className="field"
+          >
+            <div
+              className="control"
+            >
+              <button
+                className="button is-link "
+              >
+                Log in
+              </button>
+            </div>
+          </div>
+          <div>
+            <p
+              className="is-size-6"
+            >
+              Don't have an account? 
+              <a
+                onClick={[Function]}
+              >
+                Sign up.
+              </a>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`LoginForm has a valid snapshot 1`] = `
+<div>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="has-text-centered"
+    >
+      
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Email:
+      </label>
+      <div
+        className="control"
+      >
+        <input
+          className="input"
+          name="emailValue"
+          onChange={[Function]}
+          placeholder="your@email.com"
+          type="email"
+          value=""
+        />
+      </div>
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Password:
+      </label>
+      <div
+        className="control"
+      >
+        <input
+          className="input"
+          name="passwordValue"
+          onChange={[Function]}
+          type="password"
+          value=""
+        />
+      </div>
+    </div>
+    <div
+      className="field"
+    >
+      <div
+        className="control"
+      >
+        <button
+          className="button is-link "
+        >
+          Log in
+        </button>
+      </div>
+    </div>
+    <div>
+      <p
+        className="is-size-6"
+      >
+        Don't have an account? 
+        <a>
+          Sign up.
+        </a>
+      </p>
+    </div>
+  </form>
+</div>
+`;
+
+exports[`SignupForm has a valid snapshot 1`] = `
+<div>
+  <form
+    onSubmit={[Function]}
+  >
+    <div>
+      
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Name:
+      </label>
+      <div
+        className="control"
+      >
+        <input
+          className="input"
+          name="nameValue"
+          onChange={[Function]}
+          placeholder="Your Name"
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Email:
+      </label>
+      <div
+        className="control"
+      >
+        <input
+          className="input"
+          name="emailValue"
+          onChange={[Function]}
+          placeholder="your@email.com"
+          type="email"
+          value=""
+        />
+      </div>
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Password:
+      </label>
+      <div
+        className="control"
+      >
+        <input
+          className="input"
+          name="passwordValue"
+          onChange={[Function]}
+          type="password"
+          value=""
+        />
+      </div>
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Password confirmation:
+      </label>
+      <div
+        className="control"
+      >
+        <input
+          className="input"
+          name="passwordConfirmationValue"
+          onChange={[Function]}
+          type="password"
+          value=""
+        />
+      </div>
+    </div>
+    <div
+      className="field"
+    >
+      <div
+        className="control"
+      >
+        <button
+          className="button is-link "
+        >
+          Sign up
+        </button>
+      </div>
+    </div>
+    <div>
+      <p
+        className="is-size-6"
+      >
+        Already have an account? 
+        <a>
+          Log in.
+        </a>
+      </p>
+    </div>
+  </form>
+</div>
+`;

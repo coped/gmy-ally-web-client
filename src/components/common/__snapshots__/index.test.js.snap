@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button has a valid snapshot 1`] = `
+<button
+  className="button "
+>
+  I am a button
+</button>
+`;
+
+exports[`Logo has a valid snapshot 1`] = `
+<img
+  alt="logo"
+  className="Logo-unanimated"
+  src="logo_transparent.png"
+/>
+`;
+
+exports[`TextInputField has a valid snapshot 1`] = `
+<div
+  className="field"
+>
+  <label
+    className="label"
+  />
+  <div
+    className="control"
+  >
+    <input
+      className="input"
+    />
+  </div>
+</div>
+`;

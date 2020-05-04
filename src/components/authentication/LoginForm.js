@@ -4,6 +4,7 @@ import { Button } from "components/common";
 import { AsyncRequest } from "lib";
 import { endpoints } from "lib";
 import { Messages } from "lib";
+import { Notification } from "components/common";
 
 export default class LoginForm extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ export default class LoginForm extends Component {
 
     this.onTextFieldChange = this.onTextFieldChange.bind(this);
     this.loginUser = this.loginUser.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
   onTextFieldChange(event) {
@@ -44,52 +46,51 @@ export default class LoginForm extends Component {
       .finally(() => this.setState({ isLoading: false }));
   }
 
+  onFormSubmit(e) {
+    e.preventDefault();
+    this.loginUser({
+      login: {
+        email: this.state.emailValue,
+        password: this.state.passwordValue,
+      },
+    });
+  }
+
   render() {
     const { toggleSignupForm } = this.props;
     const { emailValue, passwordValue, apiMessages } = this.state;
     const isLoading = this.state.isLoading ? "is-loading" : "";
+    const emailTextInputField = {
+      label: "Email:",
+      name: "emailValue",
+      type: "email",
+      placeholder: "your@email.com",
+      value: emailValue,
+      onChange: this.onTextFieldChange,
+    };
+    const passwordTextInputField = {
+      label: "Password:",
+      name: "passwordValue",
+      type: "password",
+      value: passwordValue,
+      onChange: this.onTextFieldChange,
+    };
     return (
       <div>
-        <form
-          onSubmit={(e) => {
-            this.loginUser({
-              login: {
-                email: emailValue,
-                password: passwordValue,
-              },
-            });
-            e.preventDefault();
-          }}
-        >
+        <form onSubmit={this.onFormSubmit}>
           <div className="has-text-centered">
             {apiMessages &&
               apiMessages.map((message, index) => (
-                <div className={`notification is-${message.type} is-medium`}>
-                  {message.message}
-                </div>
+                <Notification key={index} type={message.type}>
+                  {message.message}k
+                </Notification>
               ))}
           </div>
-          <TextInputField
-            label="Email:"
-            name="emailValue"
-            type="email"
-            placeholder="your@email.com"
-            value={emailValue}
-            onChange={this.onTextFieldChange}
-          />
-          <TextInputField
-            label="Password:"
-            name="passwordValue"
-            type="password"
-            value={passwordValue}
-            onChange={this.onTextFieldChange}
-          />
+          <TextInputField {...emailTextInputField} />
+          <TextInputField {...passwordTextInputField} />
           <div className="field">
             <div className="control">
-              <Button
-                textContent="Log in"
-                classModifiers={"is-link " + isLoading}
-              />
+              <Button classModifiers={"is-link " + isLoading}>Log in</Button>
             </div>
           </div>
           <div>
