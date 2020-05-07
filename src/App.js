@@ -13,10 +13,19 @@ export default class App extends Component {
       userData: "",
     };
 
-    this.isAuthenticated = this.isAuthenticated.bind(this);
+    this.authenticate = this.authenticate.bind(this);
+    this.main = this.main.bind(this);
   }
 
-  isAuthenticated(data) {
+  main() {
+    if (this.state.isAuthenticated) {
+      return <Dashboard userData={this.state.userData} />;
+    } else {
+      return <Login authenticate={this.authenticate} />;
+    }
+  }
+
+  authenticate(data) {
     this.setState({
       isAuthenticated: true,
       userData: data,
@@ -24,15 +33,8 @@ export default class App extends Component {
   }
 
   render() {
-    const { userData } = this.state;
-    return (
-      <div className="App">
-        {this.state.isAuthenticated ? (
-          <Dashboard userData={userData} />
-        ) : (
-          <Login isAuthenticated={this.isAuthenticated} />
-        )}
-      </div>
-    );
+    return <div className="App">{this.main()}</div>;
   }
 }
+
+export { Login, Dashboard };

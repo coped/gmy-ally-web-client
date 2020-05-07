@@ -34,14 +34,16 @@ export default class LoginForm extends Component {
       .then((response) => response.json())
       .then((data) => {
         if (data.status === "success") {
-          this.props.isAuthenticated(data);
+          this.props.authenticate(data);
         } else {
           this.setState({ apiMessages: data.messages });
+          console.log(this.state)
         }
       })
       .catch((error) => {
         console.log(error);
         this.setState({ apiMessages: [Messages.connectionError] });
+        console.log(this.state)
       })
       .finally(() => this.setState({ isLoading: false }));
   }
@@ -82,7 +84,7 @@ export default class LoginForm extends Component {
             {apiMessages &&
               apiMessages.map((message, index) => (
                 <Notification key={index} type={message.type}>
-                  {message.message}k
+                  <p>{message.message}</p>
                 </Notification>
               ))}
           </div>

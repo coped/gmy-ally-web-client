@@ -16,6 +16,7 @@ export default class SignupForm extends Component {
       passwordValue: "",
       passwordConfirmationValue: "",
       apiMessages: "",
+      clientMessages: "",
     };
 
     this.onTextFieldChange = this.onTextFieldChange.bind(this);
@@ -28,14 +29,14 @@ export default class SignupForm extends Component {
       .then((response) => response.json())
       .then((data) => {
         if (data.status === "success") {
-          this.props.isAuthenticated(data);
+          this.props.authenticate(data);
         } else {
           this.setState({ apiMessages: data.messages });
         }
       })
       .catch((error) => {
         console.log(error);
-        this.setState({ apiMessages: [Messages.connectionError] });
+        this.setState({ clientMessages: [Messages.connectionError] });
       })
       .finally(() => this.setState({ isLoading: false }));
   }
@@ -55,6 +56,7 @@ export default class SignupForm extends Component {
       passwordValue,
       passwordConfirmationValue,
       apiMessages,
+      clientMessages,
     } = this.state;
     const isLoading = this.state.isLoading ? "is-loading" : "";
     return (
@@ -74,16 +76,24 @@ export default class SignupForm extends Component {
         >
           <div>
             {apiMessages &&
-              apiMessages.map((message, index) => (
-                <Notification type={message.type}>
+              apiMessages.map((notification, index) => (
+                <Notification type={notification.type}>
                   <p>The following errors occurred:</p>
                   <ul>
-                    {message.message.split("\n").map((error) => (
+                    {notification.message.split("\n").map((error) => (
                       <li>• {error}</li>
                     ))}
                   </ul>
                 </Notification>
               ))}
+            <div className="has-text-centered">
+              {clientMessages &&
+                clientMessages.map((notification, index) => (
+                  <Notification type={notification.type}>
+                    <p>{notification.message}</p>
+                  </Notification>
+                ))}
+            </div>
           </div>
           <TextInputField
             label="Name:"

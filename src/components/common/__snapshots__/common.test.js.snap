@@ -2,7 +2,8 @@
 
 exports[`Button has a valid snapshot 1`] = `
 <button
-  className="button "
+  className="button is-link"
+  onClick={[Function]}
 >
   I am a button
 </button>
@@ -14,6 +15,14 @@ exports[`Logo has a valid snapshot 1`] = `
   className="Logo-unanimated"
   src="logo_transparent.png"
 />
+`;
+
+exports[`Notification has a valid snapshot 1`] = `
+<div
+  className="notification is-info is-medium"
+>
+  I'm a notification.
+</div>
 `;
 
 exports[`TextInputField has a valid snapshot 1`] = `

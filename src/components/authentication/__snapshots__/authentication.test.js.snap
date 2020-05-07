@@ -186,6 +186,11 @@ exports[`SignupForm has a valid snapshot 1`] = `
   >
     <div>
       
+      <div
+        className="has-text-centered"
+      >
+        
+      </div>
     </div>
     <div
       className="field"
