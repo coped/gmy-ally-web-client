@@ -24,20 +24,3 @@ exports[`Notification has a valid snapshot 1`] = `
   I'm a notification.
 </div>
 `;
-
-exports[`TextInputField has a valid snapshot 1`] = `
-<div
-  className="field"
->
-  <label
-    className="label"
-  />
-  <div
-    className="control"
-  >
-    <input
-      className="input"
-    />
-  </div>
-</div>
-`;

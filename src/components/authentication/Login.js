@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Logo } from "components/common/";
-import { LoginForm } from "components/authentication";
-import { SignupForm } from "components/authentication";
+import { LoginForm, SignupForm } from "components/authentication";
 
 export default class Login extends Component {
   constructor(props) {
@@ -11,6 +10,25 @@ export default class Login extends Component {
     };
 
     this.toggleSignupForm = this.toggleSignupForm.bind(this);
+    this.showForm = this.showForm.bind(this);
+  }
+
+  showForm() {
+    if (this.state.showSignup) {
+      return (
+        <SignupForm
+          toggleSignupForm={this.toggleSignupForm}
+          authenticate={this.props.authenticate}
+        />
+      );
+    } else {
+      return (
+        <LoginForm
+          toggleSignupForm={this.toggleSignupForm}
+          authenticate={this.props.authenticate}
+        />
+      );
+    }
   }
 
   toggleSignupForm() {
@@ -18,27 +36,13 @@ export default class Login extends Component {
   }
 
   render() {
-    const { authenticate } = this.props;
-    const { showSignup } = this.state;
     return (
       <div className="center-column">
         <div className="logo-login">
           <Logo isAnimated={true} />
         </div>
         <div className="column is-5">
-          <div className="box">
-            {showSignup ? (
-              <SignupForm
-                toggleSignupForm={this.toggleSignupForm}
-                authenticate={authenticate}
-              />
-            ) : (
-              <LoginForm
-                toggleSignupForm={this.toggleSignupForm}
-                authenticate={authenticate}
-              />
-            )}
-          </div>
+          <div className="box">{this.showForm()}</div>
         </div>
       </div>
     );

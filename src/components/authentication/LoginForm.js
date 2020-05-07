@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import { TextInputField } from "components/common";
-import { Button } from "components/common";
-import { AsyncRequest } from "lib";
-import { endpoints } from "lib";
-import { Messages } from "lib";
+import { TextInputField, Button } from "components/form";
+import { AsyncRequest, endpoints, Messages } from "lib";
 import { Notification } from "components/common";
 
 export default class LoginForm extends Component {
@@ -37,13 +34,11 @@ export default class LoginForm extends Component {
           this.props.authenticate(data);
         } else {
           this.setState({ apiMessages: data.messages });
-          console.log(this.state)
         }
       })
       .catch((error) => {
         console.log(error);
         this.setState({ apiMessages: [Messages.connectionError] });
-        console.log(this.state)
       })
       .finally(() => this.setState({ isLoading: false }));
   }
@@ -77,6 +72,10 @@ export default class LoginForm extends Component {
       value: passwordValue,
       onChange: this.onTextFieldChange,
     };
+    const buttonProps = {
+      classModifiers: "is-link",
+      isLoading: isLoading,
+    };
     return (
       <div>
         <form onSubmit={this.onFormSubmit}>
@@ -90,11 +89,7 @@ export default class LoginForm extends Component {
           </div>
           <TextInputField {...emailTextInputField} />
           <TextInputField {...passwordTextInputField} />
-          <div className="field">
-            <div className="control">
-              <Button classModifiers={"is-link " + isLoading}>Log in</Button>
-            </div>
-          </div>
+          <Button {...buttonProps}>Log in</Button>
           <div>
             <p className="is-size-6">
               Don't have an account? <a onClick={toggleSignupForm}>Sign up.</a>

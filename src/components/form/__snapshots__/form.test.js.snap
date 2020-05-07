@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button has a valid snapshot 1`] = `
+<div
+  className="field"
+>
+  <div
+    className="control"
+  >
+    <button
+      className="button is-info undefined"
+    >
+      I'm a button.
+    </button>
+  </div>
+</div>
+`;
+
+exports[`TextInputField has a valid snapshot 1`] = `
+<div
+  className="field"
+>
+  <label
+    className="label"
+  >
+    Name:
+  </label>
+  <div
+    className="control"
+  >
+    <input
+      className="input"
+      name="nameValue"
+      onChange={[Function]}
+      type="text"
+      value="Your name"
+    />
+  </div>
+</div>
+`;

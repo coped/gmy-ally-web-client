@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import { TextInputField } from "components/common";
-import { Button } from "components/common";
-import { AsyncRequest } from "lib";
-import { endpoints } from "lib";
-import { Messages } from "lib";
+import { TextInputField, Button } from "components/form";
+import { AsyncRequest, endpoints, Messages } from "lib";
 import { Notification } from "components/common";
 
 export default class SignupForm extends Component {
