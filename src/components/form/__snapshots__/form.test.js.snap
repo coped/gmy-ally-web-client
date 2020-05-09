@@ -8,7 +8,7 @@ exports[`Button has a valid snapshot 1`] = `
     className="control"
   >
     <button
-      className="button is-info undefined"
+      className="button is-info "
     >
       I'm a button.
     </button>

@@ -122,11 +122,9 @@ export default class SignupForm extends Component {
             value={passwordConfirmationValue}
             onChange={this.onTextFieldChange}
           />
-          <div className="field">
-            <div className="control">
-              <Button classModifiers={"is-link " + isLoading}>Sign up</Button>
-            </div>
-          </div>
+          <Button isLoading={isLoading} classModifiers={"is-link"}>
+            Sign up
+          </Button>
           <div>
             <p className="is-size-6">
               Already have an account? <a onClick={toggleSignupForm}>Log in.</a>

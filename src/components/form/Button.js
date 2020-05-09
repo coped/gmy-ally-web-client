@@ -1,7 +1,8 @@
 import React from "react";
 
 export default function Button(props) {
-  const { children, isLoading, classModifiers } = props;
+  const { children, classModifiers } = props;
+  const isLoading = props.isLoading ? "is-loading" : "";
   return (
     <div className="field">
       <div className="control">
