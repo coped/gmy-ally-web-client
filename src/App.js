@@ -42,34 +42,14 @@ export default class App extends Component {
             <Route path="/login">
               <Login authenticate={this.authenticate} />
             </Route>
-            <PrivateRoute path="/dashboard">
+            <Route path="/dashboard">
               <Dashboard userData={this.state.userData} />
-            </PrivateRoute>
+            </Route>
           </Switch>
         </Router>
       </div>
     );
   }
-}
-
-function PrivateRoute({ children, ...rest }) {
-  return (
-    <Route
-      {...rest}
-      render={({ location }) =>
-        this.state.isAuthenticated ? (
-          children
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/",
-              state: { from: location }
-            }}
-          />
-        )
-      }
-    />
-  );
 }
 
 export { Login, Dashboard };

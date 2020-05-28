@@ -23,6 +23,7 @@ describe("App", () => {
 
   it("renders Login component", () => {
     const wrapper = mount(<App />);
+    console.log(wrapper.debug());
     expect(wrapper.find(Login).length).toEqual(1);
   });
 });
