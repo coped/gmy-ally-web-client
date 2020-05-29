@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
 import "bulma/css/bulma.css";
-import { Login } from "components/authentication";
+import { AuthForm } from "components/authentication";
 import { Dashboard } from "components/dashboard";
-import { Welcome } from "components/welcome";
+import { AuthContext } from "context/auth";
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,6 +13,7 @@ import {
   useHistory,
   useLocation,
 } from "react-router-dom";
+import PrivateRoute from "PrivateRoute";
 
 export default class App extends Component {
   constructor(props) {
@@ -27,7 +28,6 @@ export default class App extends Component {
   }
 
   authenticate(data) {
-    console.log("this was ran")
     this.setState({
       isAuthenticated: true,
       userData: data,
@@ -37,19 +37,18 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <Router>
-          <Switch>
-            <Route path="/login">
-              <Login authenticate={this.authenticate} />
-            </Route>
-            <Route path="/dashboard">
-              <Dashboard userData={this.state.userData} />
-            </Route>
-          </Switch>
-        </Router>
+        <AuthContext.Provider value={true}>
+          <Router>
+            <Route
+              exact
+              component={AuthForm}
+              authenticate={this.authenticate}
+              path="/"
+            />
+            <PrivateRoute component={Dashboard} path={"/dashboard"} />
+          </Router>
+        </AuthContext.Provider>
       </div>
     );
   }
 }
-
-export { Login, Dashboard };

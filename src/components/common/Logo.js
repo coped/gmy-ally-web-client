@@ -1,6 +1,6 @@
 import React from "react";
-import "assets/images/Logo.css";
-import gymPartnerLogo from "assets/images/logo_transparent.png";
+import "./Logo.css";
+import gymPartnerLogo from "images/logo_transparent.png";
 
 export default function Logo(props) {
   return (

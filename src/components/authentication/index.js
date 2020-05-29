@@ -1,5 +1,5 @@
+import AuthForm from "components/authentication/AuthForm";
 import Login from "components/authentication/Login";
-import LoginForm from "components/authentication/LoginForm";
-import SignupForm from "components/authentication/SignupForm";
+import Signup from "components/authentication/Signup";
 
-export { Login, LoginForm, SignupForm };
+export { AuthForm, Login, Signup };

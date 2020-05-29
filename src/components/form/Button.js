@@ -1,12 +1,14 @@
 import React from "react";
 
-export default function Button(props) {
-  const { children, classModifiers } = props;
-  const isLoading = props.isLoading ? "is-loading" : "";
+export default function Button({ children, classModifiers, loading }) {
+  let classes = `button ${classModifiers}`;
+  if (loading) classes += " is-loading";
   return (
     <div className="field">
       <div className="control">
-        <button className={`button ${classModifiers} ${isLoading}`}>
+        <button
+          className={classes}
+        >
           {children}
         </button>
       </div>

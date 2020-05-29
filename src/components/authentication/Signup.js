@@ -3,7 +3,7 @@ import { TextInputField, Button } from "components/form";
 import { AsyncRequest, endpoints, Messages } from "lib";
 import { Notification } from "components/common";
 
-export default class SignupForm extends Component {
+export default class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {

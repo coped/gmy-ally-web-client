@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthForm has a valid snapshot 1`] = `
+<div>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="has-text-centered"
+    >
+      
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Email:
+      </label>
+      <div
+        className="control"
+      >
+        <input
+          className="input"
+          name="emailValue"
+          onChange={[Function]}
+          placeholder="your@email.com"
+          type="email"
+          value=""
+        />
+      </div>
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Password:
+      </label>
+      <div
+        className="control"
+      >
+        <input
+          className="input"
+          name="passwordValue"
+          onChange={[Function]}
+          type="password"
+          value=""
+        />
+      </div>
+    </div>
+    <div
+      className="field"
+    >
+      <div
+        className="control"
+      >
+        <button
+          className="button is-link"
+        >
+          Log in
+        </button>
+      </div>
+    </div>
+    <div>
+      <p
+        className="is-size-6"
+      >
+        Don't have an account?
+         
+        <a
+          id="show-signup"
+        >
+          Sign up.
+        </a>
+      </p>
+    </div>
+  </form>
+</div>
+`;
