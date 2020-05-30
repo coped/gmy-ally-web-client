@@ -4,6 +4,7 @@ import "bulma/css/bulma.css";
 import { AuthForm } from "components/authentication";
 import { Dashboard } from "components/dashboard";
 import { AuthContext } from "context/auth";
+import { Welcome } from "welcome";
 import {
   BrowserRouter as Router,
   Switch,
@@ -39,11 +40,11 @@ export default class App extends Component {
       <div className="App">
         <AuthContext.Provider value={true}>
           <Router>
+            <Route exact component={Welcome} path="/" />
             <Route
-              exact
               component={AuthForm}
               authenticate={this.authenticate}
-              path="/"
+              path="/login"
             />
             <PrivateRoute component={Dashboard} path={"/dashboard"} />
           </Router>
