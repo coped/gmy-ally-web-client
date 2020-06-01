@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button has a valid snapshot 1`] = `
+<div
+  className="field"
+>
+  <div
+    className="control"
+  >
+    <button
+      className="button is-info"
+    >
+      I'm a button.
+    </button>
+  </div>
+</div>
+`;

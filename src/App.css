@@ -1,7 +1,5 @@
 .App {
-    min-height: 100vh;
-    color: #eeeeee;
-    background-color: #2d4059;
+    height: 100vh;
 }
 
 .center-column {

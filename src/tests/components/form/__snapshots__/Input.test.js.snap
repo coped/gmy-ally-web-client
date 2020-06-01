@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input has a valid snapshot 1`] = `
+<div
+  className="field"
+>
+  <label
+    className="label"
+  >
+    Label:
+  </label>
+  <div
+    className="control"
+  >
+    <input
+      className="input"
+      name="inputName"
+      onChange={[Function]}
+      type="text"
+      value="Input value."
+    />
+  </div>
+</div>
+`;

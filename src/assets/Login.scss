@@ -1,0 +1,18 @@
+#Login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .log-in {
+    font-weight: light;
+    font-size: 3rem;
+  }
+
+  .logo {
+    width: 20%;
+  }
+
+  .form {
+    width: 70%;
+  }
+}

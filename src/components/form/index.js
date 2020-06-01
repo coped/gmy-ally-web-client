@@ -1,4 +1,4 @@
 import Button from "components/form/Button";
-import TextInputField from "components/form/TextInputField";
+import Input from "components/form/Input";
 
-export { Button, TextInputField };
+export { Button, Input };

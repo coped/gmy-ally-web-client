@@ -4,7 +4,7 @@ import renderer from "react-test-renderer";
 import Enzyme, { mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import App from "App";
-import { AuthForm } from "components/authentication";
+import { Welcome } from "pages";
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -17,7 +17,7 @@ describe("App", () => {
 
   it("renders Login component", () => {
     const wrapper = mount(<App />);
-    expect(wrapper.find(AuthForm).length).toEqual(1);
+    expect(wrapper.find(Welcome).length).toEqual(1);
   });
 
   it("has a valid snapshot", () => {

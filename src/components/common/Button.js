@@ -1,10 +1,11 @@
 import React from "react";
 
-export default function Button(props) {
-  const classModifiers = props.classModifiers ? props.classModifiers : "";
+export default function Button({classList = [], onClick, children}) {
+  const classes = classList;
+  classes.push("button");
   return (
-    <button className={"button " + classModifiers} onClick={props.onClick}>
-      {props.children}
+    <button className={classes.join(" ")} onClick={onClick}>
+      {children}
     </button>
   );
 }
