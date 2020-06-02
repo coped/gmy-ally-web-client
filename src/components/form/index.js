@@ -1,4 +1,4 @@
-import Button from "components/form/Button";
-import Input from "components/form/Input";
+import FormButton from "components/form/FormButton";
+import FormInput from "components/form/FormInput";
 
-export { Button, Input };
+export { FormButton, FormInput };

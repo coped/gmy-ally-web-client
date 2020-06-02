@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Notification has a valid snapshot 1`] = `
+<div
+  className="notification is-medium is-primary another-class"
+  id="this-notification"
+>
+  I am a notification!
+</div>
+`;

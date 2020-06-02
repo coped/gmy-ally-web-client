@@ -1,5 +1,4 @@
-import Button from "components/common/Button";
-import Logo from "components/common/Logo";
 import Notification from "components/common/Notification";
+import Button from "components/common/Button"
 
-export { Button, Logo, Notification };
+export { Notification, Button };

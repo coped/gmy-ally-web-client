@@ -1,9 +1,11 @@
 import React from "react";
 
 export default function Notification(props) {
+  const { classList = [], children, ...rest } = props;
+  const classes = ["notification", "is-medium", ...classList];
   return (
-    <div className={`notification is-${props.type} is-medium`}>
-      {props.children}
+    <div className={classes.join(" ")} {...rest}>
+      {children}
     </div>
   );
 }

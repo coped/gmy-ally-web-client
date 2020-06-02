@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import "./App.css";
+import React, { useState } from "react";
+import "./App.scss";
 import "bulma/css/bulma.css";
 import { Login, Signup, Welcome, Dashboard } from "pages";
 import { AuthContext, useAuth } from "context/auth";
@@ -14,23 +14,32 @@ import {
 } from "react-router-dom";
 import PrivateRoute from "PrivateRoute";
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
+export default function App(props) {
+  const existingTokens = JSON.parse(localStorage.getItem("tokens"));
+  const [authTokens, setAuthTokens] = useState(existingTokens);
+
+  function setTokens(data) {
+    localStorage.setItem("tokens", JSON.stringify(data));
+    setAuthTokens(data);
   }
 
-  render() {
-    return (
-      <div className="App container">
-        <AuthContext.Provider value={true}>
-          <Router>
-            <Route exact component={Welcome} path="/" />
-            <Route component={Login} path="/login" />
-            <Route component={Signup} path="/signup" />
-            <PrivateRoute component={Dashboard} path="/dashboard" />
-          </Router>
-        </AuthContext.Provider>
+  return (
+    <AuthContext.Provider
+      value={{ authTokens: authTokens, setAuthTokens: setTokens }}
+    >
+      <div id="App" className="App container">
+        <Router>
+          <div className="welcome-title">
+            <h1>
+              Welcome to <a href="/">Gym Partner</a>
+            </h1>
+          </div>
+          <Route exact component={Welcome} path="/" />
+          <Route component={Login} path="/login" />
+          <Route component={Signup} path="/signup" />
+          <PrivateRoute component={Dashboard} path="/dashboard" />
+        </Router>
       </div>
-    );
-  }
+    </AuthContext.Provider>
+  );
 }

@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Welcome has a valid snapshot 1`] = `
+<div
+  id="Welcome"
+>
+  <a
+    href="/signup"
+  >
+    <button
+      className="button is-primary"
+    >
+      Sign up
+    </button>
+  </a>
+  <a
+    href="/login"
+  >
+    <button
+      className="button is-link"
+    >
+      Log in
+    </button>
+  </a>
+</div>
+`;

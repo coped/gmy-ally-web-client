@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Notification, Logo } from "components/common";
-import { Input, Button } from "components/form";
+import { Notification } from "components/common";
+import { FormInput, FormButton } from "components/form";
 import { AsyncRequest, endpoints, Messages } from "lib";
+import "assets/Signup.scss";
 
 export default class Signup extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ export default class Signup extends Component {
       apiMessages: "",
     };
 
-    this.onTextFieldChange = this.onTextFieldChange.bind(this);
+    this.onChange = this.onChange.bind(this);
     this.signupUser = this.signupUser.bind(this);
   }
 
@@ -39,60 +40,66 @@ export default class Signup extends Component {
       .finally(() => this.setState({ isLoading: false }));
   }
 
-  onTextFieldChange(event) {
+  onChange(event) {
     const target = event.target;
     this.setState({
-      [target.name]: target.value,
+      form: {
+        ...this.state.form,
+        [target.name]: target.value,
+      },
     });
   }
   render() {
     const { apiMessages, form } = this.state;
     return (
-      <div className="center-column">
-        <div className="logo-login">
-          <Logo isAnimated={true} />
-        </div>
-        <div className="column is-5">
-          <div className="box"></div>
-          <form onSubmit={this.onFormSubmit}>
-            <div className="has-text-centered">
-              {apiMessages &&
-                apiMessages.map((message, index) => (
-                  <Notification key={index} type={message.type}>
-                    <p>{message.message}</p>
-                  </Notification>
-                ))}
-            </div>
-            <Input
-              label="Email:"
-              name="email"
-              type="email"
-              placeholder="your@email.com"
-              value={form.email}
-              onChange={this.onTextFieldChange}
-            />
-            <Input
-              label="Password:"
-              name="password"
-              type="password"
-              value={form.password}
-              onChange={this.onTextFieldChange}
-            />
-            <Input
-              label="Password confirmation:"
-              name="passwordConfirmation"
-              type="password"
-              value={form.passwordConfirmation}
-              onChange={this.onTextFieldChange}
-            />
-            <Button>Sign up</Button>
-            <div>
-              <p className="is-size-6">
-                Already have an account? <a href="/login">Log in</a>.
-              </p>
-            </div>
-          </form>
-        </div>
+      <div id="Signup">
+        <h1 className="signup-title">Sign up</h1>
+        <form onSubmit={this.onFormSubmit} className="column is-6 box">
+          {apiMessages &&
+            apiMessages.map((message, index) => (
+              <Notification key={index} type={message.type}>
+                <p>{message.message}</p>
+              </Notification>
+            ))}
+          <FormInput
+            id="name-input"
+            label="Name:"
+            name="name"
+            type="text"
+            placeholder="Your name"
+            value={form.name}
+            onChange={this.onChange}
+          />
+          <FormInput
+            id="email-input"
+            label="Email:"
+            name="email"
+            type="email"
+            placeholder="your@email.com"
+            value={form.email}
+            onChange={this.onChange}
+          />
+          <FormInput
+            id="password-input"
+            label="Password:"
+            name="password"
+            type="password"
+            value={form.password}
+            onChange={this.onChange}
+          />
+          <FormInput
+            id="password-confirmation-input"
+            label="Password confirmation:"
+            name="passwordConfirmation"
+            type="password"
+            value={form.passwordConfirmation}
+            onChange={this.onChange}
+          />
+          <FormButton classList={["is-link"]}>Sign up</FormButton>
+          <p className="is-size-6">
+            Already have an account? <a href="/login">Log in</a>.
+          </p>
+        </form>
       </div>
     );
   }

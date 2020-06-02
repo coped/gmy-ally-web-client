@@ -1,57 +1,51 @@
-import React, { Component } from "react";
-import { Logo } from "components/common";
-import { Input, Button } from "components/form";
+import React, { useState } from "react";
+import { FormInput, FormButton } from "components/form";
 import { AsyncRequest, endpoints, Messages } from "lib";
 import { Notification } from "components/common";
-import { Route, Link } from "react-router-dom";
 import "assets/Login.scss";
+import { Link, Redirect } from "react-router-dom";
+import { useAuth } from "context/auth";
 
-export default class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoading: false,
-      apiMessages: "",
-      form: {
-        email: "",
-        password: "",
-      },
-    };
+export default function Login() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [apiMessages, setApiMessages] = useState("");
+  const [form, setForm] = useState({ email: "", password: "" });
 
-    this.onChange = this.onChange.bind(this);
-    this.loginUser = this.loginUser.bind(this);
-    this.onFormSubmit = this.onFormSubmit.bind(this);
-  }
+  const { setAuthTokens } = useAuth();
 
-  onChange(event) {
+  function onChange(event) {
     const target = event.target;
-    this.setState({
+    setForm({
+      ...form,
       [target.name]: target.value,
     });
   }
 
-  loginUser(credentials) {
-    this.setState({ isLoading: true });
+  function loginUser(credentials) {
+    setIsLoading(true);
     AsyncRequest.post(endpoints.authentication.login, credentials)
       .then((response) => response.json())
       .then((data) => {
         if (data.status === "success") {
-          // Authenticate user
+          console.log(data);
+          setAuthTokens(data.payload.jwt);
+          setIsLoggedIn(true);
         } else {
-          this.setState({ apiMessages: data.messages });
+          setApiMessages(data.messages);
+          setIsLoading(false);
         }
       })
       .catch((error) => {
         console.log(error);
-        this.setState({ apiMessages: [Messages.connectionError] });
-      })
-      .finally(() => this.setState({ isLoading: false }));
+        setApiMessages([Messages.connectionError]);
+        setIsLoading(false);
+      });
   }
 
-  onFormSubmit(e) {
+  function onFormSubmit(e) {
     e.preventDefault();
-    const { form } = this.state;
-    this.loginUser({
+    loginUser({
       login: {
         email: form.email,
         password: form.password,
@@ -59,43 +53,44 @@ export default class Login extends Component {
     });
   }
 
-  render() {
-    const { form, apiMessages, isLoading } = this.state;
-    return (
-      <div id="Login">
-        <h1 className="log-in">Log in</h1>
-        <form onSubmit={this.onFormSubmit} className="form box">
-          {apiMessages &&
-            apiMessages.map((message, index) => (
-              <Notification key={index} type={message.type}>
-                <p>{message.message}</p>
-              </Notification>
-            ))}
-          <Input
-            label="Email:"
-            name="email"
-            type="email"
-            placeholder="your@email.com"
-            value={form.email}
-            onChange={this.onChange}
-          />
-          <Input
-            label="Password:"
-            name="password"
-            type="password"
-            value={form.password}
-            onChange={this.onChange}
-          />
-          <Button classList={["is-link"]} loading={isLoading}>
-            Log in
-          </Button>
-          <div>
-            <p>
-              Don't have an account? <a href="/signup">Sign up</a>.
-            </p>
-          </div>
-        </form>
-      </div>
-    );
+  if (isLoggedIn) {
+    return <Redirect to="/dashboard" />;
   }
+
+  return (
+    <div id="Login">
+      <h1 className="login-title">Log in</h1>
+      <form onSubmit={onFormSubmit} className="column is-6 box">
+        {apiMessages &&
+          apiMessages.map((response, index) => (
+            <Notification key={index} type={response.type}>
+              <p>{response.message}</p>
+            </Notification>
+          ))}
+        <FormInput
+          id="email-input"
+          label="Email:"
+          name="email"
+          type="email"
+          placeholder="your@email.com"
+          value={form.email}
+          onChange={onChange}
+        />
+        <FormInput
+          id="password-input"
+          label="Password:"
+          name="password"
+          type="password"
+          value={form.password}
+          onChange={onChange}
+        />
+        <FormButton classList={["is-link"]} loading={isLoading}>
+          Log in
+        </FormButton>
+        <p>
+          Don't have an account? <a href="/signup">Sign up</a>.
+        </p>
+      </form>
+    </div>
+  );
 }

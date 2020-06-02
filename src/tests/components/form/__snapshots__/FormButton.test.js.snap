@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button has a valid snapshot 1`] = `
+exports[`FormButton has a valid snapshot 1`] = `
 <div
   className="field"
 >
@@ -9,8 +9,9 @@ exports[`Button has a valid snapshot 1`] = `
   >
     <button
       className="button is-info"
+      id="this-button"
     >
-      I'm a button.
+      I'm a button!
     </button>
   </div>
 </div>

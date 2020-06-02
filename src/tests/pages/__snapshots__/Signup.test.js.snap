@@ -1,19 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Login has a valid snapshot 1`] = `
+exports[`Signup has a valid snapshot 1`] = `
 <div
-  id="Login"
+  id="Signup"
 >
   <h1
-    className="login-title"
+    className="signup-title"
   >
-    Log in
+    Sign up
   </h1>
   <form
     className="column is-6 box"
-    onSubmit={[Function]}
   >
     
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Name:
+      </label>
+      <div
+        className="control"
+      >
+        <input
+          className="input"
+          id="name-input"
+          name="name"
+          onChange={[Function]}
+          placeholder="Your name"
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
     <div
       className="field"
     >
@@ -60,22 +81,45 @@ exports[`Login has a valid snapshot 1`] = `
     <div
       className="field"
     >
+      <label
+        className="label"
+      >
+        Password confirmation:
+      </label>
+      <div
+        className="control"
+      >
+        <input
+          className="input"
+          id="password-confirmation-input"
+          name="passwordConfirmation"
+          onChange={[Function]}
+          type="password"
+          value=""
+        />
+      </div>
+    </div>
+    <div
+      className="field"
+    >
       <div
         className="control"
       >
         <button
           className="button is-link"
         >
-          Log in
+          Sign up
         </button>
       </div>
     </div>
-    <p>
-      Don't have an account? 
+    <p
+      className="is-size-6"
+    >
+      Already have an account? 
       <a
-        href="/signup"
+        href="/login"
       >
-        Sign up
+        Log in
       </a>
       .
     </p>

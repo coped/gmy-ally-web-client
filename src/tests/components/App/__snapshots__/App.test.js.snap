@@ -3,29 +3,41 @@
 exports[`App has a valid snapshot 1`] = `
 <div
   className="App container"
+  id="App"
 >
-  <div>
-    <div
-      className="center-column"
-    />
-    <div
-      className="container box"
+  <div
+    className="welcome-title"
+  >
+    <h1>
+      Welcome to 
+      <a
+        href="/"
+      >
+        Gym Partner
+      </a>
+    </h1>
+  </div>
+  <div
+    id="Welcome"
+  >
+    <a
+      href="/signup"
     >
-      <div
-        className="logo-welcome"
+      <button
+        className="button is-primary"
       >
-        <img
-          alt="logo"
-          className=""
-          src="logo_transparent.png"
-        />
-      </div>
-      <h1
-        className="has-text-centered is-size-1 title"
+        Sign up
+      </button>
+    </a>
+    <a
+      href="/login"
+    >
+      <button
+        className="button is-link"
       >
-        Welcome to Gym Partner
-      </h1>
-    </div>
+        Log in
+      </button>
+    </a>
   </div>
 </div>
 `;

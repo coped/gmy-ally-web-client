@@ -1,18 +1,16 @@
 import React from "react";
-import { Logo } from "components/common";
+import "assets/Welcome.scss";
+import { Button } from "components/common";
 
 export default function Welcome() {
   return (
-    <div>
-      <div className="center-column"></div>
-      <div className="container box">
-        <div className="logo-welcome">
-          <Logo />
-        </div>
-        <h1 className="has-text-centered is-size-1 title">
-          Welcome to Gym Partner
-        </h1>
-      </div>
+    <div id="Welcome">
+      <a href="/signup">
+        <Button classList={["is-primary"]}>Sign up</Button>
+      </a>
+      <a href="/login">
+        <Button classList={["is-link"]}>Log in</Button>
+      </a>
     </div>
   );
 }
