@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Notification } from "components/common";
 import { FormInput, FormButton } from "components/form";
 import { AsyncRequest, endpoints, Messages } from "lib";
+import { Link } from "react-router-dom";
 import "assets/Signup.scss";
 
 export default class Signup extends Component {
@@ -97,7 +98,7 @@ export default class Signup extends Component {
           />
           <FormButton classList={["is-link"]}>Sign up</FormButton>
           <p className="is-size-6">
-            Already have an account? <a href="/login">Log in</a>.
+            Already have an account? <Link to="/login">Log in</Link>.
           </p>
         </form>
       </div>

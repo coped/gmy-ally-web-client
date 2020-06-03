@@ -12,7 +12,7 @@ export default function Login() {
   const [apiMessages, setApiMessages] = useState("");
   const [form, setForm] = useState({ email: "", password: "" });
 
-  const { setAuthTokens } = useAuth();
+  const { authToken, setAuthToken } = useAuth();
 
   function onChange(event) {
     const target = event.target;
@@ -28,8 +28,7 @@ export default function Login() {
       .then((response) => response.json())
       .then((data) => {
         if (data.status === "success") {
-          console.log(data);
-          setAuthTokens(data.payload.jwt);
+          setAuthToken(data.payload.jwt);
           setIsLoggedIn(true);
         } else {
           setApiMessages(data.messages);
@@ -88,7 +87,7 @@ export default function Login() {
           Log in
         </FormButton>
         <p>
-          Don't have an account? <a href="/signup">Sign up</a>.
+          Don't have an account? <Link to="/signup">Sign up</Link>.
         </p>
       </form>
     </div>

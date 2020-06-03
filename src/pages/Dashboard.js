@@ -3,11 +3,13 @@ import { useAuth } from "context/auth";
 import { Button } from "components/common";
 
 export default function Dashboard() {
-  const { setAuthTokens } = useAuth();
+  const { setAuthToken, removeAuthToken } = useAuth();
 
   function logOut() {
-    setAuthTokens("");
+    setAuthToken(null);
+    removeAuthToken();
   }
+
   return (
     <div id="Dashboard">
       <p>This is the dashboard.</p>
