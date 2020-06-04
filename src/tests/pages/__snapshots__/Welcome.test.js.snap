@@ -6,6 +6,7 @@ exports[`Welcome has a valid snapshot 1`] = `
 >
   <a
     href="/signup"
+    onClick={[Function]}
   >
     <button
       className="button is-primary"
@@ -15,6 +16,7 @@ exports[`Welcome has a valid snapshot 1`] = `
   </a>
   <a
     href="/login"
+    onClick={[Function]}
   >
     <button
       className="button is-link"

@@ -74,6 +74,7 @@ exports[`Login has a valid snapshot 1`] = `
       Don't have an account? 
       <a
         href="/signup"
+        onClick={[Function]}
       >
         Sign up
       </a>

@@ -11,6 +11,7 @@ exports[`Signup has a valid snapshot 1`] = `
   </h1>
   <form
     className="column is-6 box"
+    onSubmit={[Function]}
   >
     
     <div
@@ -118,6 +119,7 @@ exports[`Signup has a valid snapshot 1`] = `
       Already have an account? 
       <a
         href="/login"
+        onClick={[Function]}
       >
         Log in
       </a>
