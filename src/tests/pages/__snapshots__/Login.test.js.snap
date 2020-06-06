@@ -13,7 +13,6 @@ exports[`Login has a valid snapshot 1`] = `
     className="column is-6 box"
     onSubmit={[Function]}
   >
-    
     <div
       className="field"
     >

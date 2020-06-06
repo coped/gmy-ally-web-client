@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import { FormInput, FormButton } from "components/form";
-import { AsyncRequest, endpoints, Messages } from "lib";
 import { Notification } from "components/common";
 import "assets/Login.scss";
 import { Link, Redirect } from "react-router-dom";
 import { useAuth } from "context/auth";
+import Api from "lib/api";
 
 export default function Login() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [apiMessages, setApiMessages] = useState("");
+  const [apiMessages, setApiMessages] = useState([]);
   const [form, setForm] = useState({ email: "", password: "" });
 
-  const { authToken, setAuthToken } = useAuth();
+  const { setAuthToken } = useAuth();
 
   function onChange(event) {
     const target = event.target;
@@ -22,34 +22,17 @@ export default function Login() {
     });
   }
 
-  function loginUser(credentials) {
-    setIsLoading(true);
-    AsyncRequest.post(endpoints.authentication.login, credentials)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.status === "success") {
-          setAuthToken(data.payload.jwt);
-          setIsLoggedIn(true);
-        } else {
-          setApiMessages(data.messages);
-          setIsLoading(false);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        setApiMessages([Messages.connectionError]);
-        setIsLoading(false);
-      });
-  }
-
-  function onFormSubmit(e) {
+  async function loginUser(e) {
     e.preventDefault();
-    loginUser({
-      login: {
-        email: form.email,
-        password: form.password,
-      },
-    });
+    setIsLoading(true);
+    const data = await Api.login(form);
+    if (data.status === "success") {
+      setAuthToken(data.payload.jwt);
+      setIsLoggedIn(true);
+    } else {
+      setApiMessages(data.messages);
+      setIsLoading(false);
+    }
   }
 
   if (isLoggedIn) {
@@ -59,7 +42,7 @@ export default function Login() {
   return (
     <div id="Login">
       <h1 className="login-title">Log in</h1>
-      <form onSubmit={onFormSubmit} className="column is-6 box">
+      <form onSubmit={loginUser} className="column is-6 box">
         {apiMessages &&
           apiMessages.map((response, index) => (
             <Notification key={index} type={response.type}>

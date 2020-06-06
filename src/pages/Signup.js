@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Notification } from "components/common";
 import { FormInput, FormButton } from "components/form";
-import { AsyncRequest, endpoints, Messages } from "lib";
 import { Link, Redirect } from "react-router-dom";
-import "assets/Signup.scss";
+import Api from "lib/api";
 import { useAuth } from "context/auth";
+import "assets/Signup.scss";
 
 export default function Signup(props) {
   const [isLoading, setIsLoading] = useState(false);
@@ -12,46 +12,28 @@ export default function Signup(props) {
     name: "",
     email: "",
     password: "",
-    passwordConfirmation: "",
+    password_confirmation: "",
   });
   const [apiMessages, setApiMessages] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { setAuthToken } = useAuth();
 
-  function signupUser(credentials) {
+  async function signupUser(e) {
+    e.preventDefault();
     setIsLoading(true);
-    AsyncRequest.post(endpoints.users.create, credentials)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.status === "success") {
-          setAuthToken(data.payload.jwt)
-          setIsLoggedIn(true);
-        } else {
-          setApiMessages(data.messages);
-          setIsLoading(false);
-        }
-      })
-      .catch((error) => {
-        setApiMessages([Messages.connectionError]);
-        setIsLoading(false);
-      });
+    const data = await Api.createUser(form);
+    if (data.status === "success") {
+      setAuthToken(data.payload.jwt);
+      setIsLoggedIn(true);
+    } else {
+      setApiMessages(data.messages);
+      setIsLoading(false);
+    }
   }
 
   function onChange(event) {
     const target = event.target;
     setForm({ ...form, [target.name]: target.value });
-  }
-
-  function onFormSubmit(event) {
-    event.preventDefault();
-    signupUser({
-      user: {
-        name: form.name,
-        email: form.email,
-        password: form.password,
-        password_confirmation: form.passwordConfirmation,
-      },
-    });
   }
 
   if (isLoggedIn) {
@@ -61,7 +43,7 @@ export default function Signup(props) {
   return (
     <div id="Signup">
       <h1 className="signup-title">Sign up</h1>
-      <form onSubmit={onFormSubmit} className="column is-6 box">
+      <form onSubmit={signupUser} className="column is-6 box">
         {apiMessages &&
           apiMessages.map((message, index) => (
             <Notification key={index} type={message.type}>

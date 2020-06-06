@@ -1,4 +1,4 @@
-const ApiEndpoints = (productionEnvironment) => {
+const ApiEndpointsBuilder = (productionEnvironment) => {
   // Provides API endpoints in the form of a module
 
   const productionUrl = "https://gympartner.herokuapp.com/api/v1/";
@@ -38,8 +38,9 @@ const ApiEndpoints = (productionEnvironment) => {
   return { authentication, users, workouts, exercises };
 };
 
-const endpoints = ApiEndpoints();
-const productionEndpoints = ApiEndpoints(true);
-const developmentEndpoints = ApiEndpoints(false);
+const ApiEndpoints = ApiEndpointsBuilder();
+const productionEndpoints = ApiEndpointsBuilder(true);
+const developmentEndpoints = ApiEndpointsBuilder(false);
 
-export { endpoints, productionEndpoints, developmentEndpoints };
+export { productionEndpoints, developmentEndpoints };
+export default ApiEndpoints;
