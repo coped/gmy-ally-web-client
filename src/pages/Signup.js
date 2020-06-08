@@ -79,9 +79,9 @@ export default function Signup(props) {
         <FormInput
           id="password-confirmation-input"
           label="Password confirmation:"
-          name="passwordConfirmation"
+          name="password_confirmation"
           type="password"
-          value={form.passwordConfirmation}
+          value={form.password_confirmation}
           onChange={onChange}
         />
         <FormButton classList={["is-link"]} loading={isLoading}>

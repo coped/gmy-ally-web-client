@@ -3,11 +3,7 @@ import ApiEndpoints from "lib/apiEndpoints";
 
 describe("AsyncRequest", () => {
   describe("get", () => {
-    const mockSuccessResponse = { status: "success" };
-    const mockJsonPromise = Promise.resolve(mockSuccessResponse);
-    const mockFetchPromise = Promise.resolve({
-      json: () => mockJsonPromise,
-    });
-    it("sends a get request", async () => {});
+    // Write tests once mock is created
+    it.todo("sends a get request");
   });
 });

@@ -93,7 +93,7 @@ exports[`Signup has a valid snapshot 1`] = `
         <input
           className="input"
           id="password-confirmation-input"
-          name="passwordConfirmation"
+          name="password_confirmation"
           onChange={[Function]}
           type="password"
           value=""

@@ -2,8 +2,9 @@
 
 exports[`Notification has a valid snapshot 1`] = `
 <div
-  className="notification is-medium is-primary another-class"
+  className="notification is-medium another-class is-primary"
   id="this-notification"
+  type="primary"
 >
   I am a notification!
 </div>

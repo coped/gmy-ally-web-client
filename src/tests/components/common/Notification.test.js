@@ -10,7 +10,7 @@ Enzyme.configure({ adapter: new Adapter() });
 describe("Notification", () => {
   const props = {
     id: "this-notification",
-    classList: ["another-class"],
+    classList: ["another-class", "is-primary"],
     type: "primary"
   };
   const message = "I am a notification!";

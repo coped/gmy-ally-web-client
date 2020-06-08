@@ -15,10 +15,10 @@ describe("ApiEndpoints", () => {
   });
   describe("users", () => {
     const user = {
-      ID: "1",
+      id: "1",
     };
     it("returns users show url", () => {
-      expect(productionEndpoints.users.show(user.ID)).toEqual(
+      expect(productionEndpoints.users.show({ id: user.id })).toEqual(
         "https://gympartner.herokuapp.com/api/v1/users/1.json"
       );
     });
@@ -27,14 +27,19 @@ describe("ApiEndpoints", () => {
         "https://gympartner.herokuapp.com/api/v1/users.json"
       );
     });
-    it("returns users update url", () => {
-      expect(productionEndpoints.users.update(user.ID)).toEqual(
-        "https://gympartner.herokuapp.com/api/v1/users/1.json"
+  });
+  describe("exercises", () => {
+    const exercise = {
+      id: "exercise-name",
+    };
+    it("returns exercise index url", () => {
+      expect(productionEndpoints.exercises.index).toEqual(
+        "https://gympartner.herokuapp.com/api/v1/exercises.json"
       );
     });
-    it("returns users destroy url", () => {
-      expect(productionEndpoints.users.destroy(user.ID)).toEqual(
-        "https://gympartner.herokuapp.com/api/v1/users/1.json"
+    it("returns specific exercise url", () => {
+      expect(productionEndpoints.exercises.show({ id: exercise.id })).toEqual(
+        `https://gympartner.herokuapp.com/api/v1/exercises/${exercise.id}.json`
       );
     });
   });

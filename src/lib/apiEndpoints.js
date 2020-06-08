@@ -1,13 +1,13 @@
-const ApiEndpointsBuilder = (productionEnvironment) => {
+const ApiEndpointsBuilder = ({ environment }) => {
   // Provides API endpoints in the form of a module
 
   const productionUrl = "https://gympartner.herokuapp.com/api/v1/";
   const developmentUrl = "http://localhost:4000/api/v1/";
 
   const baseUrl = (() => {
-    if (productionEnvironment === true) {
+    if (environment === "production") {
       return productionUrl;
-    } else if (productionEnvironment === false) {
+    } else if (environment === "development") {
       return developmentUrl;
     } else {
       return process.env.NODE_ENV === "production"
@@ -22,25 +22,27 @@ const ApiEndpointsBuilder = (productionEnvironment) => {
   };
 
   const users = {
-    show: (userID) => baseUrl + "users/" + userID + ".json",
+    show: ({ id }) => baseUrl + "users/" + id + ".json",
     create: baseUrl + "users.json",
-    update: (userID) => baseUrl + "users/" + userID + ".json",
-    destroy: (userID) => baseUrl + "users/" + userID + ".json",
+    update: ({ id }) => baseUrl + "users/" + id + ".json",
+    destroy: ({ id }) => baseUrl + "users/" + id + ".json",
   };
 
   const workouts = {};
 
   const exercises = {
     index: baseUrl + "exercises.json",
-    show: (exerciseName) => baseUrl + "exercises/" + exerciseName + ".json",
+    show: ({ id }) => baseUrl + "exercises/" + id + ".json",
   };
 
   return { authentication, users, workouts, exercises };
 };
 
-const ApiEndpoints = ApiEndpointsBuilder();
-const productionEndpoints = ApiEndpointsBuilder(true);
-const developmentEndpoints = ApiEndpointsBuilder(false);
+const ApiEndpoints = ApiEndpointsBuilder({ environment: null });
+const productionEndpoints = ApiEndpointsBuilder({ environment: "production" });
+const developmentEndpoints = ApiEndpointsBuilder({
+  environment: "development",
+});
 
 export { productionEndpoints, developmentEndpoints };
 export default ApiEndpoints;

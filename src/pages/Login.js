@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import { Link, Redirect } from "react-router-dom";
 import { FormInput, FormButton } from "components/form";
 import { Notification } from "components/common";
-import "assets/Login.scss";
-import { Link, Redirect } from "react-router-dom";
 import { useAuth } from "context/auth";
 import Api from "lib/api";
+import "assets/Login.scss";
 
 export default function Login() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -25,7 +25,7 @@ export default function Login() {
   async function loginUser(e) {
     e.preventDefault();
     setIsLoading(true);
-    const data = await Api.login(form);
+    const data = await Api.login({ info: form });
     if (data.status === "success") {
       setAuthToken(data.payload.jwt);
       setIsLoggedIn(true);
@@ -45,7 +45,7 @@ export default function Login() {
       <form onSubmit={loginUser} className="column is-6 box">
         {apiMessages &&
           apiMessages.map((response, index) => (
-            <Notification key={index} type={response.type}>
+            <Notification key={index} classList={[`is-${response.type}`]}>
               <p>{response.message}</p>
             </Notification>
           ))}
