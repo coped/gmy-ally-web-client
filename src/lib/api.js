@@ -22,7 +22,7 @@ export default (function Api() {
   // Users
   const showUser = async ({ id, authorization }) => {
     try {
-      const response = await AsyncRequest.post({
+      const response = await AsyncRequest.get({
         path: ApiEndpoints.users.show({ id }),
         authorization,
       });

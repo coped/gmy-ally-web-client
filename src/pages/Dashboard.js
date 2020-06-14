@@ -1,18 +1,46 @@
-import React from "react";
-import { useAuth } from "context/auth";
+import React, { useEffect, useState } from "react";
 import { Button } from "components/common";
+import { useAuth } from "context/auth";
+import { useUser } from "context/user";
+import Api from "lib/api";
+import { Redirect } from "react-router-dom";
 
 export default function Dashboard() {
-  const { setAuthToken, removeAuthToken } = useAuth();
+  const { authToken, setAuthContext } = useAuth();
+  const { user, setUserContext } = useUser();
+
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  async function fetchData() {
+    const data = await Api.showUser({
+      id: user.id,
+      authorization: authToken,
+    });
+    setUserContext(data.payload.user);
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  function showUserData() {
+    console.log(user);
+  }
 
   function logOut() {
-    setAuthToken(null);
-    removeAuthToken();
+    setAuthContext(null);
+    setUserContext(null);
+    setIsLoggedIn(false);
+  }
+
+  if (!isLoggedIn) {
+    return <Redirect to="/login" />;
   }
 
   return (
     <div id="Dashboard">
       <p>This is the dashboard.</p>
+      <Button onClick={showUserData}>Show data</Button>
       <Button onClick={logOut}>Log out</Button>
     </div>
   );

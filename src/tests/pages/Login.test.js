@@ -5,16 +5,21 @@ import Enzyme, { mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import { Login } from "pages";
 import { MemoryRouter } from "react-router-dom";
-import { AuthContext, useAuth } from "context/auth";
+import { AuthContext } from "context/auth";
+import { UserContext } from "context/user";
 
 Enzyme.configure({ adapter: new Adapter() });
 
 describe("Login", () => {
   const withContext = (component) => (
     <AuthContext.Provider
-      value={{ authToken: "token", setAuthToken: () => true }}
+      value={{ authToken: "token", setAuthContext: () => true }}
     >
-      <MemoryRouter initialEntries={["/login"]}>{component}</MemoryRouter>
+      <UserContext.Provider
+        value={{ user: "user", setUserContext: () => true }}
+      >
+        <MemoryRouter initialEntries={["/login"]}>{component}</MemoryRouter>
+      </UserContext.Provider>
     </AuthContext.Provider>
   );
 

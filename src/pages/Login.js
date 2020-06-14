@@ -3,6 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import { FormInput, FormButton } from "components/form";
 import { Notification } from "components/common";
 import { useAuth } from "context/auth";
+import { useUser } from "context/user";
 import Api from "lib/api";
 import "assets/Login.scss";
 
@@ -12,7 +13,8 @@ export default function Login() {
   const [apiMessages, setApiMessages] = useState([]);
   const [form, setForm] = useState({ email: "", password: "" });
 
-  const { setAuthToken } = useAuth();
+  const { setAuthContext } = useAuth();
+  const { setUserContext } = useUser();
 
   function onChange(event) {
     const target = event.target;
@@ -27,7 +29,8 @@ export default function Login() {
     setIsLoading(true);
     const data = await Api.login({ info: form });
     if (data.status === "success") {
-      setAuthToken(data.payload.jwt);
+      setAuthContext(data.payload.jwt);
+      setUserContext(data.payload.user);
       setIsLoggedIn(true);
     } else {
       setApiMessages(data.messages);
