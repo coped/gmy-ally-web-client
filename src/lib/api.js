@@ -10,7 +10,7 @@ export default (function Api() {
     const userData = { login: info };
     try {
       const response = await AsyncRequest.post({
-        path: ApiEndpoints.authentication.login,
+        path: ApiEndpoints.auth.login,
         data: userData,
       });
       return await response.json();

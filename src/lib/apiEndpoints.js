@@ -1,48 +1,33 @@
-const ApiEndpointsBuilder = ({ environment }) => {
-  // Provides API endpoints in the form of a module
+const ApiEndpointsBuilder = ({ env }) => {
+  // Provides API endpoints as URL objects
 
-  const productionUrl = "https://gympartner.herokuapp.com/api/v1/";
-  const developmentUrl = "http://localhost:4000/api/v1/";
+  const productionUrl = new URL("https://gympartner.herokuapp.com/api/v1/");
+  const developmentUrl = new URL("http://localhost:4000/api/v1/");
 
-  const baseUrl = (() => {
-    if (environment === "production") {
-      return productionUrl;
-    } else if (environment === "development") {
-      return developmentUrl;
-    } else {
-      return process.env.NODE_ENV === "production"
-        ? productionUrl
-        : developmentUrl;
-    }
-  })();
+  const baseUrl = env === "production" ? productionUrl : developmentUrl;
 
-  const authentication = {
-    login: baseUrl + "login.json",
-    logout: baseUrl + "logout.json",
+  const auth = {
+    login: new URL("login.json", baseUrl),
   };
 
   const users = {
-    show: ({ id }) => baseUrl + "users/" + id + ".json",
-    create: baseUrl + "users.json",
-    update: ({ id }) => baseUrl + "users/" + id + ".json",
-    destroy: ({ id }) => baseUrl + "users/" + id + ".json",
+    show: ({ id }) => new URL(`users/${id}.json`, baseUrl),
+    create: new URL("users.json", baseUrl),
+    update: ({ id }) => new URL(`users/${id}.json`, baseUrl),
+    destroy: ({ id }) => new URL(`users/${id}.json`, baseUrl),
   };
 
   const workouts = {};
 
   const exercises = {
-    index: baseUrl + "exercises.json",
-    show: ({ id }) => baseUrl + "exercises/" + id + ".json",
+    index: new URL("exercises.json", baseUrl),
+    show: ({ id }) => new URL(`exercises/${id}.json`, baseUrl),
   };
 
-  return { authentication, users, workouts, exercises };
+  return { auth, users, workouts, exercises };
 };
 
-const ApiEndpoints = ApiEndpointsBuilder({ environment: null });
-const productionEndpoints = ApiEndpointsBuilder({ environment: "production" });
-const developmentEndpoints = ApiEndpointsBuilder({
-  environment: "development",
-});
+const ApiEndpoints = ApiEndpointsBuilder({ env: process.env.NODE_ENV });
 
-export { productionEndpoints, developmentEndpoints };
+export { ApiEndpointsBuilder };
 export default ApiEndpoints;
