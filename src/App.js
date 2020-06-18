@@ -7,7 +7,7 @@ import { UserContext } from "context/user";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import PrivateRoute from "PrivateRoute";
 
-export default function App(props) {
+export default function App() {
   const localStorageItem = {
     authToken: "auth-token",
     user: "user",

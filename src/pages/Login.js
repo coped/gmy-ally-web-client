@@ -28,6 +28,7 @@ export default function Login() {
     e.preventDefault();
     setIsLoading(true);
     const data = await Api.login({ info: form });
+    console.log(data);
     if (data.status === "success") {
       setAuthContext(data.payload.jwt);
       setUserContext(data.payload.user);

@@ -18,7 +18,7 @@ describe("ApiEndpoints", () => {
       expect(
         productionEndpoints.users.show({ id: user.id }).toString()
       ).toEqual(
-        `https://gympartner.herokuapp.com/api/v1/users/${user.id}.json`
+        `https://gympartner.herokuapp.com/api/v1/users/${user.id}`
       );
     });
     it("returns users create url", () => {

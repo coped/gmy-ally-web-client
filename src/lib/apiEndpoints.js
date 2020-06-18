@@ -11,7 +11,7 @@ const ApiEndpointsBuilder = ({ env }) => {
   };
 
   const users = {
-    show: ({ id }) => new URL(`users/${id}.json`, baseUrl),
+    show: ({ id }) => new URL(`users/${id}`, baseUrl),
     create: new URL("users.json", baseUrl),
     update: ({ id }) => new URL(`users/${id}.json`, baseUrl),
     destroy: ({ id }) => new URL(`users/${id}.json`, baseUrl),
@@ -26,8 +26,7 @@ const ApiEndpointsBuilder = ({ env }) => {
 
   return { auth, users, workouts, exercises };
 };
-
 const ApiEndpoints = ApiEndpointsBuilder({ env: process.env.NODE_ENV });
 
-export { ApiEndpointsBuilder };
 export default ApiEndpoints;
+export { ApiEndpointsBuilder };

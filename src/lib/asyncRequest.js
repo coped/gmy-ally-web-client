@@ -51,4 +51,5 @@ const buildOptions = (options, authorization) => {
 const createRequest = (path, options) => {
   const request = new Request(path, options);
   return fetch(request);
+
 };

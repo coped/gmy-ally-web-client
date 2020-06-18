@@ -11,15 +11,15 @@ export default function Dashboard() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
-  async function fetchData() {
-    const data = await Api.showUser({
-      id: user.id,
-      authorization: authToken,
-    });
-    setUserContext(data.payload.user);
-  }
-
+  
   useEffect(() => {
+    async function fetchData() {
+      const data = await Api.showUser({
+        id: user.id,
+        authorization: authToken,
+      });
+      setUserContext(data.payload.user);
+    }
     fetchData();
   }, []);
 

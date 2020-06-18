@@ -3,35 +3,38 @@ import ReactDOM from "react-dom";
 import renderer from "react-test-renderer";
 import Enzyme, { mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import { Login } from "pages";
+import { Login as LoginComponent } from "pages";
 import { MemoryRouter } from "react-router-dom";
 import { AuthContext } from "context/auth";
 import { UserContext } from "context/user";
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe("Login", () => {
-  const withContext = (component) => (
-    <AuthContext.Provider
-      value={{ authToken: "token", setAuthContext: () => true }}
+// Login component with necessary context providers
+const Login = (
+  <AuthContext.Provider
+    value={{ authToken: jest.fn(), setAuthContext: jest.fn() }}
+  >
+    <UserContext.Provider
+      value={{ user: jest.fn(), setUserContext: jest.fn() }}
     >
-      <UserContext.Provider
-        value={{ user: "user", setUserContext: () => true }}
-      >
-        <MemoryRouter initialEntries={["/login"]}>{component}</MemoryRouter>
-      </UserContext.Provider>
-    </AuthContext.Provider>
-  );
+      <MemoryRouter initialEntries={["/login"]}>
+        {<LoginComponent />}
+      </MemoryRouter>
+    </UserContext.Provider>
+  </AuthContext.Provider>
+);
 
-  it("renders a login form", () => {
-    const wrapper = mount(withContext(<Login />));
-    expect(wrapper.find("form").length).toEqual(1);
-  });
-
+describe("Login", () => {
   it("renders without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(withContext(<Login />), div);
+    ReactDOM.render(Login, div);
     ReactDOM.unmountComponentAtNode(div);
+  });
+
+  it("renders a login form", () => {
+    const wrapper = mount(Login);
+    expect(wrapper.find("form").length).toEqual(1);
   });
 
   // it("changes to input are reflected in login state", () => {
@@ -49,7 +52,7 @@ describe("Login", () => {
   // });
 
   it("has a valid snapshot", () => {
-    const component = renderer.create(withContext(<Login />));
+    const component = renderer.create(Login);
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });

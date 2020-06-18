@@ -7,11 +7,11 @@ import Messages from "lib/messages";
 export default (function Api() {
   // Authentication
   const login = async ({ info }) => {
-    const userData = { login: info };
+    const loginInfo = { login: info };
     try {
       const response = await AsyncRequest.post({
         path: ApiEndpoints.auth.login,
-        data: userData,
+        data: loginInfo,
       });
       return await response.json();
     } catch (error) {
