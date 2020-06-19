@@ -3,7 +3,6 @@ import { Link, Redirect } from "react-router-dom";
 import { FormInput, FormButton } from "components/form";
 import { Notification } from "components/common";
 import { useAuth } from "context/auth";
-import { useUser } from "context/user";
 import Api from "lib/api";
 import "assets/Login.scss";
 
@@ -58,6 +57,7 @@ export default function Login() {
           placeholder="your@email.com"
           value={form.email}
           onChange={onChange}
+          autoComplete="email"
         />
         <FormInput
           id="password-input"
@@ -66,6 +66,7 @@ export default function Login() {
           type="password"
           value={form.password}
           onChange={onChange}
+          autoComplete="current-password"
         />
         <FormButton classList={["is-link"]} loading={isLoading}>
           Log in

@@ -25,6 +25,7 @@ exports[`Login has a valid snapshot 1`] = `
         className="control"
       >
         <input
+          autoComplete="email"
           className="input"
           id="email-input"
           name="email"
@@ -47,6 +48,7 @@ exports[`Login has a valid snapshot 1`] = `
         className="control"
       >
         <input
+          autoComplete="current-password"
           className="input"
           id="password-input"
           name="password"

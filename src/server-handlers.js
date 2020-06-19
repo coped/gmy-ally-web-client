@@ -21,6 +21,8 @@ const mockUsers = [
   },
 ];
 
+const requestDelay = 700;
+
 // Endpoints returned from ApiEndpoints module are URL objects, which
 // msw's rest namespace cannot accept (unlike fetch). Be sure to convert
 // URL objects to strings before providing them to rest functions.
@@ -32,6 +34,7 @@ const authHandlers = [
     if (email === user.email && password === user.password) {
       return res(
         ctx.status(200),
+        ctx.delay(requestDelay),
         ctx.json({
           status: "success",
           payload: {
@@ -47,6 +50,7 @@ const authHandlers = [
     } else {
       return res(
         ctx.status(401),
+        ctx.delay(requestDelay),
         ctx.json({
           status: "error",
           messages: [
@@ -69,6 +73,7 @@ const usersHandlers = [
     if (authorization === user.jwt) {
       return res(
         ctx.status(200),
+        ctx.delay(requestDelay),
         ctx.json({
           status: "success",
           payload: {
@@ -151,4 +156,4 @@ const handlers = [
   ...asyncRequestTestHandlers,
 ];
 
-export { handlers, mockUsers };
+export { handlers, mockUsers, testUrl };

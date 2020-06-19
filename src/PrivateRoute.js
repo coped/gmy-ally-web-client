@@ -8,7 +8,7 @@ export default function PrivateRoute({ component: Component, ...rest }) {
     <Route
       {...rest}
       render={(props) =>
-        auth.token ? <Component {...props} /> : <Redirect to="/login" />
+        auth ? <Component {...props} /> : <Redirect to="/login" />
       }
     />
   );

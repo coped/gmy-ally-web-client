@@ -7,10 +7,10 @@ function UserProvider(props) {
   const [user, setUser] = useState(existingUser);
 
   function setUserContext(data) {
+    setUser(data);
     if (data === null) {
       localStorage.clear("user");
     } else {
-      setUser(data);
       localStorage.setItem("user", JSON.stringify(data));
     }
   }

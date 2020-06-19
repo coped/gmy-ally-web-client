@@ -7,10 +7,10 @@ function AuthProvider(props) {
   const [auth, setAuth] = useState(existingAuth);
 
   function setAuthContext(data) {
+    setAuth(data);
     if (data === null) {
       localStorage.clear("auth");
     } else {
-      setAuth(data);
       localStorage.setItem("auth", JSON.stringify(data));
     }
   }

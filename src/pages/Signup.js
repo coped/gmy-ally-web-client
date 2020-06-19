@@ -6,7 +6,7 @@ import Api from "lib/api";
 import { useAuth } from "context/auth";
 import "assets/Signup.scss";
 
-export default function Signup(props) {
+export default function Signup() {
   const [isLoading, setIsLoading] = useState(false);
   const [form, setForm] = useState({
     name: "",
@@ -58,6 +58,7 @@ export default function Signup(props) {
           placeholder="Your name"
           value={form.name}
           onChange={onChange}
+          autoComplete="name"
         />
         <FormInput
           id="email-input"
@@ -67,6 +68,7 @@ export default function Signup(props) {
           placeholder="your@email.com"
           value={form.email}
           onChange={onChange}
+          autoComplete="email"
         />
         <FormInput
           id="password-input"
@@ -75,6 +77,7 @@ export default function Signup(props) {
           type="password"
           value={form.password}
           onChange={onChange}
+          autoComplete="new-password"
         />
         <FormInput
           id="password-confirmation-input"
@@ -83,6 +86,7 @@ export default function Signup(props) {
           type="password"
           value={form.password_confirmation}
           onChange={onChange}
+          autoComplete="new-password"
         />
         <FormButton classList={["is-link"]} loading={isLoading}>
           Sign up
