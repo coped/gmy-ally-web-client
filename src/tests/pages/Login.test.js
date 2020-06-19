@@ -6,8 +6,6 @@ import Adapter from "enzyme-adapter-react-16";
 import { Login as LoginComponent } from "pages";
 import { MemoryRouter } from "react-router-dom";
 import AppProviders from "AppProviders";
-import { mockUsers } from "server-handlers";
-import { Dashboard } from "pages";
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -20,9 +18,8 @@ const Login = (
   </AppProviders>
 );
 
-const user = mockUsers[0];
-
 describe("Login", () => {
+
   it("renders without crashing", () => {
     const div = document.createElement("div");
     ReactDOM.render(Login, div);

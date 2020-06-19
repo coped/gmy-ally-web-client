@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Notification } from "components/common";
 import { FormInput, FormButton } from "components/form";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Api from "lib/api";
 import { useAuth } from "context/auth";
 import "assets/Signup.scss";
@@ -15,16 +15,14 @@ export default function Signup() {
     password_confirmation: "",
   });
   const [apiMessages, setApiMessages] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const { setAuthToken } = useAuth();
+  const { setAuthContext } = useAuth();
 
   async function signupUser(e) {
     e.preventDefault();
     setIsLoading(true);
-    const data = await Api.createUser(form);
+    const data = await Api.createUser({ info: form });
     if (data.status === "success") {
-      setAuthToken(data.payload.jwt);
-      setIsLoggedIn(true);
+      setAuthContext({ token: data.payload.jwt, userId: data.payload.user.id });
     } else {
       setApiMessages(data.messages);
       setIsLoading(false);
@@ -34,10 +32,6 @@ export default function Signup() {
   function onChange(event) {
     const target = event.target;
     setForm({ ...form, [target.name]: target.value });
-  }
-
-  if (isLoggedIn) {
-    return <Redirect to="/dashboard" />;
   }
 
   return (
@@ -59,6 +53,7 @@ export default function Signup() {
           value={form.name}
           onChange={onChange}
           autoComplete="name"
+          required={true}
         />
         <FormInput
           id="email-input"
@@ -69,6 +64,7 @@ export default function Signup() {
           value={form.email}
           onChange={onChange}
           autoComplete="email"
+          required={true}
         />
         <FormInput
           id="password-input"
@@ -78,6 +74,7 @@ export default function Signup() {
           value={form.password}
           onChange={onChange}
           autoComplete="new-password"
+          required={true}
         />
         <FormInput
           id="password-confirmation-input"
@@ -87,6 +84,7 @@ export default function Signup() {
           value={form.password_confirmation}
           onChange={onChange}
           autoComplete="new-password"
+          required={true}
         />
         <FormButton classList={["is-link"]} loading={isLoading}>
           Sign up

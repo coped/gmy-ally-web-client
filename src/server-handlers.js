@@ -2,8 +2,8 @@ import { rest } from "msw";
 import ApiEndpoints from "lib/apiEndpoints";
 import Messages from "lib/messages";
 
-const mockUsers = [
-  {
+const mockUsers = {
+  mockUser: {
     id: "1",
     name: "Mock User",
     email: "mock@user.com",
@@ -11,7 +11,7 @@ const mockUsers = [
     workouts: { note: "workout" },
     jwt: "mock-user-jwt",
   },
-  {
+  anotherUser: {
     id: "2",
     name: "Another User",
     email: "another@user.com",
@@ -19,7 +19,16 @@ const mockUsers = [
     workouts: { note: "another workout" },
     jwt: "another-user-jwt",
   },
-];
+  newUser: {
+    id: "3",
+    name: "New User",
+    email: "new@user.com",
+    password: "foobum",
+    jwt: "new-user-jwt",
+  },
+};
+
+const userList = [mockUsers.mockUser, mockUsers.anotherUser, mockUsers.newUser];
 
 const requestDelay = 700;
 
@@ -30,7 +39,7 @@ const authHandlers = [
   // Auth login
   rest.post(ApiEndpoints.auth.login.toString(), (req, res, ctx) => {
     const { email, password } = req.body.login;
-    const user = mockUsers.find((user) => user.email === email);
+    const user = userList.find((user) => user.email === email);
     if (email === user.email && password === user.password) {
       return res(
         ctx.status(200),
@@ -68,8 +77,8 @@ const authHandlers = [
 const usersHandlers = [
   // Users show
   rest.get("http://localhost:4000/api/v1/users/:id", (req, res, ctx) => {
-    const user = mockUsers.find((user) => user.id === req.params.id);
     const authorization = req.headers.map.authorization;
+    const user = userList.find((user) => user.jwt === authorization);
     if (authorization === user.jwt) {
       return res(
         ctx.status(200),
@@ -89,23 +98,21 @@ const usersHandlers = [
     }
   }),
   // Users create
-  // rest.post(ApiEndpoints.users.create.toString(), (req, res, ctx) => {
-  //   const { name, email } = req.body.user;
-  //   return res(
-  //     ctx.status(200),
-  //     ctx.json({
-  //       status: "success",
-  //       payload: {
-  //         jwt: mockUser.authorization,
-  //         user: {
-  //           id: Math.floor(Math.random() * 100) + 10,
-  //           name: name,
-  //           email: email,
-  //         },
-  //       },
-  //     })
-  //   );
-  // }),
+  rest.post(ApiEndpoints.users.create.toString(), (req, res, ctx) => {
+    const { newUser: user } = mockUsers;
+    return res(
+      ctx.status(200),
+      ctx.json({
+        status: "success",
+        payload: {
+          jwt: user.jwt,
+          user: {
+            id: user.id,
+          },
+        },
+      })
+    );
+  }),
 ];
 
 const testUrl = "http://localhost:4000/api/v1.json";

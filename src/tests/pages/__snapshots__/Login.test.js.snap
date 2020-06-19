@@ -31,6 +31,7 @@ exports[`Login has a valid snapshot 1`] = `
           name="email"
           onChange={[Function]}
           placeholder="your@email.com"
+          required={true}
           type="email"
           value=""
         />
@@ -53,6 +54,7 @@ exports[`Login has a valid snapshot 1`] = `
           id="password-input"
           name="password"
           onChange={[Function]}
+          required={true}
           type="password"
           value=""
         />

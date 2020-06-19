@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FormInput, FormButton } from "components/form";
 import { Notification } from "components/common";
 import { useAuth } from "context/auth";
@@ -7,7 +7,6 @@ import Api from "lib/api";
 import "assets/Login.scss";
 
 export default function Login() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [apiMessages, setApiMessages] = useState([]);
   const [form, setForm] = useState({ email: "", password: "" });
@@ -28,15 +27,10 @@ export default function Login() {
     const data = await Api.login({ info: form });
     if (data.status === "success") {
       setAuthContext({ token: data.payload.jwt, userId: data.payload.user.id });
-      setIsLoggedIn(true);
     } else {
       setApiMessages(data.messages);
       setIsLoading(false);
     }
-  }
-
-  if (isLoggedIn) {
-    return <Redirect to="/dashboard" />;
   }
 
   return (
@@ -58,6 +52,7 @@ export default function Login() {
           value={form.email}
           onChange={onChange}
           autoComplete="email"
+          required={true}
         />
         <FormInput
           id="password-input"
@@ -67,6 +62,7 @@ export default function Login() {
           value={form.password}
           onChange={onChange}
           autoComplete="current-password"
+          required={true}
         />
         <FormButton classList={["is-link"]} loading={isLoading}>
           Log in
