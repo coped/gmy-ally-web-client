@@ -14,7 +14,6 @@ export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
 
   const { setAuthContext } = useAuth();
-  const { setUserContext } = useUser();
 
   function onChange(event) {
     const target = event.target;
@@ -28,10 +27,8 @@ export default function Login() {
     e.preventDefault();
     setIsLoading(true);
     const data = await Api.login({ info: form });
-    console.log(data);
     if (data.status === "success") {
-      setAuthContext(data.payload.jwt);
-      setUserContext(data.payload.user);
+      setAuthContext({ token: data.payload.jwt, userId: data.payload.user.id });
       setIsLoggedIn(true);
     } else {
       setApiMessages(data.messages);

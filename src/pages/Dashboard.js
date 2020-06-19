@@ -6,17 +6,16 @@ import Api from "lib/api";
 import { Redirect } from "react-router-dom";
 
 export default function Dashboard() {
-  const { authToken, setAuthContext } = useAuth();
+  const { auth, setAuthContext } = useAuth();
   const { user, setUserContext } = useUser();
 
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
-  
   useEffect(() => {
     async function fetchData() {
       const data = await Api.showUser({
-        id: user.id,
-        authorization: authToken,
+        id: auth.userId,
+        authorization: auth.token,
       });
       setUserContext(data.payload.user);
     }
