@@ -9,6 +9,14 @@ export default function Navbar() {
   const { auth, setAuthContext } = useAuth();
   const { setUserContext } = useUser();
 
+  function toggleMenu(e) {
+    e.preventDefault();
+    const button = document.getElementById("toggle-menu");
+    const menu = document.getElementById("navbarBasicExample");
+    button.classList.toggle("is-active");
+    menu.classList.toggle("is-active");
+  }
+
   function logout() {
     setAuthContext(null);
     setUserContext(null);
@@ -16,18 +24,18 @@ export default function Navbar() {
 
   return (
     <div id="Navbar">
-      <nav
-        className="navbar is-transparent"
-        role="navigation"
-        aria-label="main navigation"
-      >
+      <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
           <Link to="/" className="navbar-item">
             <img src={Logo} alt="Logo" />
+            <p className="title">GYM PARTNER</p>
           </Link>
 
           <a
+            id="toggle-menu"
             role="button"
+            href={false}
+            onClick={toggleMenu}
             className="navbar-burger burger"
             aria-label="menu"
             aria-expanded="false"
@@ -44,6 +52,9 @@ export default function Navbar() {
             <Link to="/" className="navbar-item">
               Home
             </Link>
+            <a className="navbar-item">
+              Exercises
+            </a>
           </div>
 
           <div className="navbar-end">
