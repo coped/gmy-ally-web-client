@@ -40,8 +40,8 @@ function ExercisesProvider(props) {
           return exerciseGroups.includes(muscleGroup);
         })
         .sort((a, b) => {
-          const nameA = a.name.toUpperCase();
-          const nameB = b.name.toUpperCase();
+          const nameA = a.title.toUpperCase();
+          const nameB = b.title.toUpperCase();
           if (nameA > nameB) return 1;
           if (nameA < nameB) return -1;
           return 0;
