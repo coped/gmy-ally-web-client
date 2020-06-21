@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dashboard has a valid snapshot 1`] = `
+<div
+  id="Dashboard"
+>
+  <div
+    className="pageloader is-info"
+  >
+    <span
+      className="title"
+    >
+      Loading . . .
+    </span>
+  </div>
+  <p>
+    This is the dashboard.
+  </p>
+  <button
+    className="button"
+    onClick={[Function]}
+  >
+    Show data
+  </button>
+</div>
+`;

@@ -10,7 +10,7 @@ exports[`App has a valid snapshot 1`] = `
   >
     <nav
       aria-label="main navigation"
-      className="navbar is-transparent"
+      className="navbar"
       role="navigation"
     >
       <div
@@ -25,12 +25,20 @@ exports[`App has a valid snapshot 1`] = `
             alt="Logo"
             src="logo_transparent.png"
           />
+          <p
+            className="title"
+          >
+            GYM PARTNER
+          </p>
         </a>
         <a
           aria-expanded="false"
           aria-label="menu"
           className="navbar-burger burger"
           data-target="navbarBasicExample"
+          href="false"
+          id="toggle-menu"
+          onClick={[Function]}
           role="button"
         >
           <span
@@ -57,6 +65,13 @@ exports[`App has a valid snapshot 1`] = `
             onClick={[Function]}
           >
             Home
+          </a>
+          <a
+            className="navbar-item"
+            href="/exercises"
+            onClick={[Function]}
+          >
+            Exercises
           </a>
         </div>
         <div
@@ -93,17 +108,246 @@ exports[`App has a valid snapshot 1`] = `
     </nav>
   </div>
   <div
-    className="container"
+    className="section container"
   >
     <div
       id="Welcome"
     >
       <h1
-        className="title"
+        className="title has-text-centered is-size-1"
       >
         Welcome to Gym Partner!
       </h1>
+      <div
+        className="columns section"
+      >
+        <div
+          className="column content"
+        >
+          <div
+            className="container"
+          >
+            <h2
+              className="has-text-centered"
+            >
+              Gym Partner is a web and mobile application built to help you:
+            </h2>
+            <div>
+              <ul
+                className="is-size-5"
+              >
+                <li>
+                  Schedule workout routines
+                </li>
+                <li>
+                  Set fitness goals
+                </li>
+                <li>
+                  Track your improvement over time
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div
+            className="has-text-centered section"
+          >
+            <h2>
+              Sign up and try it out!
+            </h2>
+            <a
+              className="button is-primary is-large"
+              href="/signup"
+              onClick={[Function]}
+            >
+              <strong>
+                Sign up
+              </strong>
+            </a>
+          </div>
+        </div>
+        <div
+          className="column is-5"
+        >
+          <div
+            className="box"
+          >
+            <div
+              className="carousel-root"
+              tabIndex={0}
+            >
+              <div
+                className="carousel carousel-slider"
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+              >
+                <button
+                  aria-label="previous slide / item"
+                  className="control-arrow control-prev control-disabled"
+                  onClick={[Function]}
+                  type="button"
+                />
+                <div
+                  className="slider-wrapper axis-horizontal"
+                  style={
+                    Object {
+                      "height": "auto",
+                    }
+                  }
+                >
+                  <ul
+                    className="slider animated"
+                    onMouseDown={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchStart={[Function]}
+                    style={
+                      Object {
+                        "MozTransform": "translate3d(-100%,0,0)",
+                        "MozTransitionDuration": "500ms",
+                        "MsTransform": "translate3d(-100%,0,0)",
+                        "MsTransitionDuration": "500ms",
+                        "OTransform": "translate3d(-100%,0,0)",
+                        "OTransitionDuration": "500ms",
+                        "WebkitTransform": "translate3d(-100%,0,0)",
+                        "WebkitTransitionDuration": "500ms",
+                        "height": "auto",
+                        "msTransform": "translate3d(-100%,0,0)",
+                        "msTransitionDuration": "500ms",
+                        "transform": "translate3d(-100%,0,0)",
+                        "transitionDuration": "500ms",
+                      }
+                    }
+                  >
+                    <li
+                      className="slide"
+                      onClick={[Function]}
+                    >
+                      <div>
+                        <img
+                          alt="Muscles on muscles"
+                          src="muscles-on-muscles-1x1.jpg"
+                        />
+                      </div>
+                    </li>
+                    <li
+                      className="slide selected"
+                      onClick={[Function]}
+                    >
+                      <div>
+                        <img
+                          alt="Larry the Lobster"
+                          src="larry-1x1.jpg"
+                        />
+                      </div>
+                    </li>
+                    <li
+                      className="slide"
+                      onClick={[Function]}
+                    >
+                      <div>
+                        <img
+                          alt="Kali muscle"
+                          src="kali-muscle-1x1.jpg"
+                        />
+                      </div>
+                    </li>
+                    <li
+                      className="slide"
+                      onClick={[Function]}
+                    >
+                      <div>
+                        <img
+                          alt="Sandy Cheeks"
+                          src="buff-sandy-1x1.jpg"
+                        />
+                      </div>
+                    </li>
+                    <li
+                      className="slide"
+                      onClick={[Function]}
+                    >
+                      <div>
+                        <img
+                          alt="Belgian blue"
+                          src="belgian-blue-1x1.jpg"
+                        />
+                      </div>
+                    </li>
+                    <li
+                      className="slide"
+                      onClick={[Function]}
+                    >
+                      <div>
+                        <img
+                          alt="Eyeball muscles"
+                          src="eyeball-muscles-1x1.jpg"
+                        />
+                      </div>
+                    </li>
+                    <li
+                      className="slide"
+                      onClick={[Function]}
+                    >
+                      <div>
+                        <img
+                          alt="Muscles on muscles"
+                          src="muscles-on-muscles-1x1.jpg"
+                        />
+                      </div>
+                    </li>
+                    <li
+                      className="slide selected"
+                      onClick={[Function]}
+                    >
+                      <div>
+                        <img
+                          alt="Larry the Lobster"
+                          src="larry-1x1.jpg"
+                        />
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <button
+                  aria-label="next slide / item"
+                  className="control-arrow control-next control-disabled"
+                  onClick={[Function]}
+                  type="button"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+  <div
+    id="Footer"
+  >
+    <footer
+      className="footer"
+    >
+      <div
+        className="content has-text-centered"
+      >
+        <p>
+          Gym Partner is a work in progress! You can check out the source code and make contributions on
+           
+          <a
+            href="https://github.com/coped/gym-partner-api"
+          >
+            Gym Partner's github.
+          </a>
+        </p>
+        <img
+          alt="Gym Partner logo"
+          className="logo"
+          src="logo_transparent.png"
+        />
+      </div>
+    </footer>
   </div>
 </div>
 `;

@@ -29,8 +29,6 @@ describe("Signup", () => {
     expect(wrapper.find("form").length).toEqual(1);
   });
 
-  // === MODIFY TO TEST BEHAVIOR INSTEAD ===
-
   it("properly renders changes to controlled input", () => {
     const wrapper = mount(Signup);
     const changeEmail = { target: { name: "email", value: "my-email" } };

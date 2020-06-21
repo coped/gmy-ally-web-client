@@ -34,7 +34,7 @@ export default function Navbar() {
           <a
             id="toggle-menu"
             role="button"
-            href={false}
+            href="false"
             onClick={toggleMenu}
             className="navbar-burger burger"
             aria-label="menu"
@@ -52,9 +52,9 @@ export default function Navbar() {
             <Link to="/" className="navbar-item">
               Home
             </Link>
-            <a className="navbar-item">
+            <Link to="/exercises" className="navbar-item">
               Exercises
-            </a>
+            </Link>
           </div>
 
           <div className="navbar-end">

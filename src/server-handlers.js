@@ -1,6 +1,7 @@
 import { rest } from "msw";
 import ApiEndpoints from "lib/apiEndpoints";
 import Messages from "lib/messages";
+import AllExercises from "all-exercises";
 
 const mockUsers = {
   mockUser: {
@@ -115,6 +116,17 @@ const usersHandlers = [
   }),
 ];
 
+const exercisesHandlers = [
+  // Exercises index
+  rest.get(ApiEndpoints.exercises.index.toString(), (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.delay(requestDelay),
+      ctx.json(AllExercises)
+    );
+  }),
+];
+
 const testUrl = "http://localhost:4000/api/v1.json";
 const asyncRequestTestHandlers = [
   rest.get(testUrl, (req, res, ctx) => {
@@ -160,6 +172,7 @@ const asyncRequestTestHandlers = [
 const handlers = [
   ...authHandlers,
   ...usersHandlers,
+  ...exercisesHandlers,
   ...asyncRequestTestHandlers,
 ];
 
