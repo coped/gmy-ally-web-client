@@ -1,6 +1,6 @@
 import { rest } from "msw";
-import ApiEndpoints from "lib/apiEndpoints";
-import Messages from "lib/messages";
+import { ApiEndpoints } from "lib/apiEndpoints";
+import { Messages } from "lib/messages";
 import AllExercises from "all-exercises";
 
 const mockUsers = {

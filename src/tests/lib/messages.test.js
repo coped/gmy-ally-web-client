@@ -1,4 +1,4 @@
-import Messages from "lib/messages";
+import { Messages } from "lib/messages";
 
 describe("Messages", () => {
   it("creates a new message", () => {

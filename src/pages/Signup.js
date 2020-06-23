@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Notification } from "components/common";
 import { FormInput, FormButton } from "components/form";
 import { Link } from "react-router-dom";
-import Api from "lib/api";
+import { Api } from "lib/api";
 import { useAuth } from "context/auth";
 import "assets/Signup.scss";
 

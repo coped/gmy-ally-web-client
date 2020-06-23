@@ -1,4 +1,4 @@
-import AsyncRequest from "lib/asyncRequest";
+import { AsyncRequest } from "lib/asyncRequest";
 import { server } from "tests/server.js";
 import { testUrl } from "server-handlers";
 

@@ -1,12 +1,12 @@
-import AsyncRequest from "lib/asyncRequest";
-import ApiEndpoints from "lib/apiEndpoints";
-import Messages from "lib/messages";
+import { AsyncRequest } from "lib/asyncRequest";
+import { ApiEndpoints } from "lib/apiEndpoints";
+import { Messages } from "lib/messages";
 
 // Module that encapsulates all interactions with back-end API
 
-export default (function Api() {
+export const Api = {
   // Authentication
-  const login = async ({ info }) => {
+  login: async ({ info }) => {
     const loginInfo = { login: info };
     try {
       const response = await AsyncRequest.post({
@@ -17,10 +17,9 @@ export default (function Api() {
     } catch (error) {
       return handleConnectionError(error);
     }
-  };
-
+  },
   // Users
-  const showUser = async ({ id, authorization }) => {
+  showUser: async ({ id, authorization }) => {
     try {
       const response = await AsyncRequest.get({
         path: ApiEndpoints.users.show({ id }),
@@ -30,9 +29,8 @@ export default (function Api() {
     } catch (error) {
       return handleConnectionError(error);
     }
-  };
-
-  const createUser = async ({ info }) => {
+  },
+  createUser: async ({ info }) => {
     const userData = { user: info };
     try {
       const response = await AsyncRequest.post({
@@ -43,9 +41,8 @@ export default (function Api() {
     } catch (error) {
       return handleConnectionError(error);
     }
-  };
-
-  const updateUser = async ({ id, info, authorization }) => {
+  },
+  updateUser: async ({ id, info, authorization }) => {
     const userData = { user: info };
     try {
       const response = await AsyncRequest.patch({
@@ -57,9 +54,8 @@ export default (function Api() {
     } catch (error) {
       return handleConnectionError(error);
     }
-  };
-
-  const destroyUser = async ({ id, authorization }) => {
+  },
+  destroyUser: async ({ id, authorization }) => {
     try {
       const response = await AsyncRequest.destroy({
         path: ApiEndpoints.users.destroy({ id }),
@@ -69,10 +65,9 @@ export default (function Api() {
     } catch (error) {
       return handleConnectionError(error);
     }
-  };
-
+  },
   // Exercises
-  const indexExercises = async () => {
+  indexExercises: async () => {
     try {
       const response = await AsyncRequest.get({
         path: ApiEndpoints.exercises.index,
@@ -81,9 +76,8 @@ export default (function Api() {
     } catch (error) {
       return handleConnectionError(error);
     }
-  };
-
-  const showExercise = async ({ id }) => {
+  },
+  showExercise: async ({ id }) => {
     try {
       const response = await AsyncRequest.get(
         ApiEndpoints.exercises.show({ id })
@@ -92,18 +86,8 @@ export default (function Api() {
     } catch (error) {
       return handleConnectionError(error);
     }
-  };
-
-  return {
-    login,
-    showUser,
-    createUser,
-    updateUser,
-    destroyUser,
-    indexExercises,
-    showExercise,
-  };
-})();
+  },
+};
 
 const handleConnectionError = (error) => {
   console.log(error);

@@ -1,6 +1,6 @@
-const ApiEndpointsBuilder = ({ env }) => {
-  // Provides API endpoints as URL objects
+// Provides API endpoints as URL objects
 
+export const ApiEndpointsBuilder = ({ env }) => {
   const productionUrl = new URL("https://gympartner.herokuapp.com/api/v1/");
   const developmentUrl = new URL("http://localhost:4000/api/v1/");
 
@@ -26,7 +26,5 @@ const ApiEndpointsBuilder = ({ env }) => {
 
   return { auth, users, workouts, exercises };
 };
-const ApiEndpoints = ApiEndpointsBuilder({ env: process.env.NODE_ENV });
 
-export default ApiEndpoints;
-export { ApiEndpointsBuilder };
+export const ApiEndpoints = ApiEndpointsBuilder({ env: process.env.NODE_ENV });

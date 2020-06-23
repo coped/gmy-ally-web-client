@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { FormInput, FormButton } from "components/form";
 import { Notification } from "components/common";
 import { useAuth } from "context/auth";
-import Api from "lib/api";
+import { Api } from "lib/api";
 import "assets/Login.scss";
 
 export default function Login() {

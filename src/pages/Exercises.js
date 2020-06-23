@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Api from "lib/api";
+import { Api } from "lib/api";
 import { PageLoader } from "components/common";
 import { useExercises } from "context/exercises";
 import "bulma-quickview/dist/css/bulma-quickview.min.css";

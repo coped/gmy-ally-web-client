@@ -3,7 +3,7 @@ import { Button } from "components/common";
 import { useAuth } from "context/auth";
 import { useUser } from "context/user";
 import { PageLoader } from "components/common";
-import Api from "lib/api";
+import { Api } from "lib/api";
 
 export default function Dashboard() {
   const { auth } = useAuth();

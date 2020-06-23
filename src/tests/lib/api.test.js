@@ -1,4 +1,4 @@
-import Api from "lib/api";
+import { Api } from "lib/api";
 import { server } from "tests/server.js";
 import { mockUsers } from "server-handlers";
 
